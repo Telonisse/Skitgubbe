@@ -19,16 +19,20 @@ public class ThrowCardHandler : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(this.transform.position, Vector3.up, out hit, 1f))
             {
-                if (hit.collider.tag == "Respawn" && IsCardInPile(hit.collider.gameObject) == false)
+                if (hit.collider.tag == "Card" && IsCardInPile(hit.collider.gameObject) == false)
                 {
                     if (first == false)
                     {
+                        //hit.collider.GetComponent<Card>().GrabObject(false);
                         cards.Add(hit.collider.gameObject);
+                        hit.collider.transform.position = this.transform.position;
                         first = true;
                     }
                     else if (hit.collider.GetComponent<Card>().GetCardNum() >= cards[cards.Count - 1].GetComponent<Card>().GetCardNum() || hit.collider.GetComponent<Card>().GetCardNum() == 2 || hit.collider.GetComponent<Card>().GetCardNum() == 10)
                     {
+                        //hit.collider.GetComponent<Card>().GrabObject(false);
                         cards.Add(hit.collider.gameObject);
+                        hit.collider.transform.position = this.transform.position;
                     }
                 }
             }
@@ -42,11 +46,12 @@ public class ThrowCardHandler : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(this.transform.position, Vector3.up, out hit, 1f))
             {
-                if (hit.collider.tag != "Respawn")
+                if (hit.collider.tag != "Card")
                 {
                     if (lastInactiveObject != null)
                     {
                         lastInactiveObject.SetActive(true);
+                        //lastInactiveObject.GetComponent<Card>().GrabObject(true);
                     }
                     else
                     {

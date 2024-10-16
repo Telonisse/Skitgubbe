@@ -14,11 +14,11 @@ public class CardHandler : MonoBehaviour
 
     private void Start()
     {
-        shuffledCards = ShuffleSymbols(cardPrefab);
-        AssignSymbols();
+        shuffledCards = ShuffleCards(cardPrefab);
+        SpawnCards();
     }
 
-    private List<GameObject> ShuffleSymbols(List<GameObject> symbols)
+    private List<GameObject> ShuffleCards(List<GameObject> symbols)
     {
         List<GameObject> shuffled = new List<GameObject>(symbols);
 
@@ -33,9 +33,9 @@ public class CardHandler : MonoBehaviour
         return shuffled;
     }
 
-    private void AssignSymbols()
+    private void SpawnCards()
     {
-        Instantiate(shuffledCards[currentCard], new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.5f, spawnLocation.transform.position.z), shuffledCards[currentCard].transform.rotation);
+        Instantiate(shuffledCards[currentCard], new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.5f, spawnLocation.transform.position.z), shuffledCards[currentCard].transform.rotation * Quaternion.Euler(180, 0, 0));
         currentCard++;
     }
 
@@ -44,18 +44,20 @@ public class CardHandler : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(spawnLocation.transform.position, Vector3.up, out hit, 1f))
         {
-            if (hit.collider.tag != "Respawn" && currentCard < 52)
+            if (hit.collider.tag != "Card" && currentCard < 52)
             {
-                Instantiate(shuffledCards[currentCard], new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.5f, spawnLocation.transform.position.z), shuffledCards[currentCard].transform.rotation);
+                Instantiate(shuffledCards[currentCard], new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.5f, spawnLocation.transform.position.z), shuffledCards[currentCard].transform.rotation * Quaternion.Euler(180, 0, 0));
                 currentCard++;
             }
-            //else if(hit.collider.tag == "Respawn")
+            if (hit.collider.tag == "Card" && currentCard < 13)
+            {
+                FindObjectOfType<DealCardsHandler>().DealCard(hit.collider.gameObject);
+            }
+            //else if(hit.collider.tag == "Card")
             //{
             //    int num = hit.collider.GetComponent<Card>().GetCardNum();
             //    Debug.Log(num);
             //}
         }
-
-        Debug.DrawRay(spawnLocation.transform.position, Vector3.up * 1, Color.red);
     }
 }
