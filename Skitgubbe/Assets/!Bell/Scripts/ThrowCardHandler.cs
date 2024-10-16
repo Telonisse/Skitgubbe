@@ -10,27 +10,63 @@ public class ThrowCardHandler : MonoBehaviour
     [SerializeField] GameObject killPile;
     public bool first = false;
 
+    public bool pickUpCards = false;
+
     void Update()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(this.transform.position, Vector3.up, out hit, 1f))
+        if (pickUpCards == false)
         {
-            if (hit.collider.tag == "Respawn" && IsCardInPile(hit.collider.gameObject) == false)
+            RaycastHit hit;
+            if (Physics.Raycast(this.transform.position, Vector3.up, out hit, 1f))
             {
-                if (first == false)
+                if (hit.collider.tag == "Respawn" && IsCardInPile(hit.collider.gameObject) == false)
                 {
-                    cards.Add(hit.collider.gameObject);
-                    first = true;
+                    if (first == false)
+                    {
+                        cards.Add(hit.collider.gameObject);
+                        first = true;
+                    }
+                    else if (hit.collider.GetComponent<Card>().GetCardNum() >= cards[cards.Count - 1].GetComponent<Card>().GetCardNum() || hit.collider.GetComponent<Card>().GetCardNum() == 2 || hit.collider.GetComponent<Card>().GetCardNum() == 10)
+                    {
+                        cards.Add(hit.collider.gameObject);
+                    }
                 }
-                else if (hit.collider.GetComponent<Card>().GetCardNum() >= cards[cards.Count - 1].GetComponent<Card>().GetCardNum() || hit.collider.GetComponent<Card>().GetCardNum() == 2 || hit.collider.GetComponent<Card>().GetCardNum() == 10)
+            }
+            ShowLastCard();
+            CheckLast4();
+            CheckFor10();
+        }
+        if (pickUpCards == true)
+        {
+            GameObject lastInactiveObject = FindLastInactive(cards);
+            RaycastHit hit;
+            if (Physics.Raycast(this.transform.position, Vector3.up, out hit, 1f))
+            {
+                if (hit.collider.tag != "Respawn")
                 {
-                    cards.Add(hit.collider.gameObject);
+                    if (lastInactiveObject != null)
+                    {
+                        lastInactiveObject.SetActive(true);
+                    }
+                    else
+                    {
+                        pickUpCards = false;
+                    }
                 }
             }
         }
-        ShowLastCard();
-        CheckLast4();
-        CheckFor10();
+    }
+
+    GameObject FindLastInactive(List<GameObject> cards)
+    {
+        for (int i = cards.Count - 1; i >= 0; i--)
+        {
+            if (cards[i].activeSelf == false)
+            {
+                return cards[i];
+            }
+        }
+        return null;
     }
 
     bool IsCardInPile(GameObject checkCard)
