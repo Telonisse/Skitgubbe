@@ -17,7 +17,7 @@ public class ThrowCardHandler : MonoBehaviour
         if (pickUpCards == false)
         {
             RaycastHit hit;
-            if (Physics.Raycast(this.transform.position, Vector3.up, out hit, 1f))
+            if (Physics.Raycast(new Vector3(this.transform.position.x, this.transform.position.y + 0.4f, this.transform.position.z), Vector3.down, out hit, 1f))
             {
                 if (hit.collider.tag == "Card" && IsCardInPile(hit.collider.gameObject) == false)
                 {
@@ -60,6 +60,7 @@ public class ThrowCardHandler : MonoBehaviour
                 }
             }
         }
+        Debug.DrawRay(new Vector3(this.transform.position.x, this.transform.position.y + 0.4f, this.transform.position.z), Vector3.down, Color.red);
     }
 
     GameObject FindLastInactive(List<GameObject> cards)

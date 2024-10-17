@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public class CardHandler : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class CardHandler : MonoBehaviour
     private void Update()
     {
         RaycastHit hit;
-        if (Physics.Raycast(spawnLocation.transform.position, Vector3.up, out hit, 1f))
+        if (Physics.Raycast(new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.4f, spawnLocation.transform.position.z), Vector3.down, out hit, 1f))
         {
             if (hit.collider.tag != "Card" && currentCard < 52)
             {
@@ -59,5 +60,6 @@ public class CardHandler : MonoBehaviour
             //    Debug.Log(num);
             //}
         }
+        Debug.DrawRay(new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.4f, spawnLocation.transform.position.z), Vector3.down, Color.green);
     }
 }
