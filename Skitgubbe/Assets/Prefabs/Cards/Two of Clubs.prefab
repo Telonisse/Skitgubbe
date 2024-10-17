@@ -262,7 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardNumber: 2
   isDead: 0
-  grabObject: {fileID: 0}
+  grabObject: {fileID: 4057207502052555293}
 --- !u!1 &4057207502052555293
 GameObject:
   m_ObjectHideFlags: 0

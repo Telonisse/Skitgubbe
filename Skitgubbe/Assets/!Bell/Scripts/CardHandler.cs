@@ -35,7 +35,7 @@ public class CardHandler : MonoBehaviour
 
     private void SpawnCards()
     {
-        Instantiate(shuffledCards[currentCard], new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.5f, spawnLocation.transform.position.z), shuffledCards[currentCard].transform.rotation * Quaternion.Euler(180, 0, 0));
+        Instantiate(shuffledCards[currentCard], new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.2f, spawnLocation.transform.position.z), shuffledCards[currentCard].transform.rotation * Quaternion.Euler(180, 0, 0));
         currentCard++;
     }
 
@@ -46,7 +46,7 @@ public class CardHandler : MonoBehaviour
         {
             if (hit.collider.tag != "Card" && currentCard < 52)
             {
-                Instantiate(shuffledCards[currentCard], new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.5f, spawnLocation.transform.position.z), shuffledCards[currentCard].transform.rotation * Quaternion.Euler(180, 0, 0));
+                Instantiate(shuffledCards[currentCard], new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.2f, spawnLocation.transform.position.z), shuffledCards[currentCard].transform.rotation * Quaternion.Euler(180, 0, 0));
                 currentCard++;
             }
             if (hit.collider.tag == "Card" && currentCard < 13)
