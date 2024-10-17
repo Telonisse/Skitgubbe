@@ -9,7 +9,6 @@ public class Card : MonoBehaviour
 
     [SerializeField] GameObject grabObject;
 
-
     public void GrabObject(bool grabObjectOn)
     {
         grabObject.SetActive(grabObjectOn);

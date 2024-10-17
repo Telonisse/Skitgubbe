@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.UI.Image;
+using Fusion;
 
 public class CardHandler : MonoBehaviour
 {
@@ -12,6 +12,8 @@ public class CardHandler : MonoBehaviour
     public List<GameObject> shuffledCards;
 
     public int currentCard = 0;
+
+    [SerializeField] NetworkRunner runner;
 
     private void Start()
     {
@@ -36,7 +38,10 @@ public class CardHandler : MonoBehaviour
 
     private void SpawnCards()
     {
-        Instantiate(shuffledCards[currentCard], new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.2f, spawnLocation.transform.position.z), shuffledCards[currentCard].transform.rotation * Quaternion.Euler(180, 0, 0));
+        shuffledCards[currentCard].transform.position = new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.2f, spawnLocation.transform.position.z);
+        shuffledCards[currentCard].transform.rotation = shuffledCards[currentCard].transform.rotation * Quaternion.Euler(180, 0, 0);
+        shuffledCards[currentCard].SetActive(true);
+        //runner.Spawn(shuffledCards[currentCard], new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.2f, spawnLocation.transform.position.z), shuffledCards[currentCard].transform.rotation * Quaternion.Euler(180, 0, 0), runner.LocalPlayer);
         currentCard++;
     }
 
@@ -47,7 +52,10 @@ public class CardHandler : MonoBehaviour
         {
             if (hit.collider.tag != "Card" && currentCard < 52)
             {
-                Instantiate(shuffledCards[currentCard], new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.2f, spawnLocation.transform.position.z), shuffledCards[currentCard].transform.rotation * Quaternion.Euler(180, 0, 0));
+                shuffledCards[currentCard].transform.position = new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.2f, spawnLocation.transform.position.z);
+                shuffledCards[currentCard].transform.rotation = shuffledCards[currentCard].transform.rotation * Quaternion.Euler(180, 0, 0);
+                shuffledCards[currentCard].SetActive(true);
+                //runner.Spawn(shuffledCards[currentCard], new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.2f, spawnLocation.transform.position.z), shuffledCards[currentCard].transform.rotation * Quaternion.Euler(180, 0, 0));
                 currentCard++;
             }
             if (hit.collider.tag == "Card" && currentCard < 13)
