@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 222021448007631369}
   - component: {fileID: 537633180047186063}
   m_Layer: 0
-  m_Name: '[BuildingBlock] TouchHandGrab'
+  m_Name: AoD TouchHandGrab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 4e14e0ba-51f2-4a5c-a822-e304bf36d48c
-  instanceId: 93113f37-aa6c-425a-944a-da4415df2339
+  instanceId: bda2c495-0b1e-4f11-8f10-4ee110798d81
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: fb25cac7-8f37-455d-ac01-3fa41a1be37d

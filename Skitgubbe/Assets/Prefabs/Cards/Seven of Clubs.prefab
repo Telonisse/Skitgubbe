@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2319454679272052960}
   - component: {fileID: 5356956996061985752}
   m_Layer: 0
-  m_Name: '[BuildingBlock] TouchHandGrab'
+  m_Name: SoC TouchHandGrab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
