@@ -20,7 +20,7 @@ public class NetworkedCardHandler : NetworkBehaviour
         if (HasStateAuthority)  // Ensures only the server shuffles
         {
             shuffledCardIndices = ShuffleDeck(cardPrefabs.Count);  // Shuffle the card indices
-            SpawnFirstCard();  // Spawn the first card from the shuffled deck
+            RPC_SpawnCard();  // Spawn the first card from the shuffled deck
         }
         else
         {
@@ -50,23 +50,46 @@ public class NetworkedCardHandler : NetworkBehaviour
 
         return indices;
     }
+    public void OnButtonPressed()
+    {
+        RPC_SpawnCard();
+    }
 
-    // Function to spawn the first card from the shuffled deck
-    private void SpawnFirstCard()
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    private void RPC_SpawnCard()
     {
         if (shuffledCardIndices.Count > 0)
         {
-            int firstCardIndex = shuffledCardIndices[0];  // Get the first card in the shuffled list
+            int firstCardIndex = shuffledCardIndices[currentCardIndex];  // Get the first card in the shuffled list
             GameObject cardPrefabToSpawn = cardPrefabs[firstCardIndex];
 
-            // Spawn the card across the network using Runner.Spawn
-            NetworkObject spawnedObject = Runner.Spawn(cardPrefabToSpawn,spawnLocation.transform.position,Quaternion.identity);
+            // Spawn the card across the network using Runner.Spawn (handled by the server)
+            NetworkObject spawnedObject = Runner.Spawn(cardPrefabToSpawn, spawnLocation.transform.position, Quaternion.identity);
 
-            currentCardIndex = 0;  // Set the networked index to the first card
+            currentCardIndex++;  // Update the index to spawn the next card
         }
         else
         {
             Debug.LogError("No cards to spawn, shuffled deck is empty!");
         }
     }
+
+    // Function to spawn the first card from the shuffled deck
+    //public void SpawnCard()
+    //{
+    //    if (shuffledCardIndices.Count > 0)
+    //    {
+    //        int firstCardIndex = shuffledCardIndices[currentCardIndex];  // Get the first card in the shuffled list
+    //        GameObject cardPrefabToSpawn = cardPrefabs[firstCardIndex];
+
+    //        // Spawn the card across the network using Runner.Spawn
+    //        NetworkObject spawnedObject = Runner.Spawn(cardPrefabToSpawn,spawnLocation.transform.position,Quaternion.identity);
+
+    //        currentCardIndex++;  // Set the networked index to the first card
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("No cards to spawn, shuffled deck is empty!");
+    //    }
+    //}
 }

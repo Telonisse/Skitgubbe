@@ -10,11 +10,6 @@ public class Card : NetworkBehaviour
 
     [SerializeField] GameObject grabObject;
 
-    public override void Spawned()
-    {
-        ToggleObjectActiveState(false);
-    }
-
     public void ToggleObjectActiveState(bool isActive)
     {
         // Call an RPC to toggle the object for all clients
