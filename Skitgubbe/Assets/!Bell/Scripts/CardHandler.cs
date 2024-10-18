@@ -13,8 +13,6 @@ public class CardHandler : MonoBehaviour
 
     public int currentCard = 0;
 
-    [SerializeField] NetworkRunner runner;
-
     private void Start()
     {
         shuffledCards = ShuffleCards(cardPrefab);
@@ -41,7 +39,6 @@ public class CardHandler : MonoBehaviour
         shuffledCards[currentCard].transform.position = new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.2f, spawnLocation.transform.position.z);
         shuffledCards[currentCard].transform.rotation = shuffledCards[currentCard].transform.rotation * Quaternion.Euler(180, 0, 0);
         shuffledCards[currentCard].SetActive(true);
-        //runner.Spawn(shuffledCards[currentCard], new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.2f, spawnLocation.transform.position.z), shuffledCards[currentCard].transform.rotation * Quaternion.Euler(180, 0, 0), runner.LocalPlayer);
         currentCard++;
     }
 
@@ -55,7 +52,6 @@ public class CardHandler : MonoBehaviour
                 shuffledCards[currentCard].transform.position = new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.2f, spawnLocation.transform.position.z);
                 shuffledCards[currentCard].transform.rotation = shuffledCards[currentCard].transform.rotation * Quaternion.Euler(180, 0, 0);
                 shuffledCards[currentCard].SetActive(true);
-                //runner.Spawn(shuffledCards[currentCard], new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 0.2f, spawnLocation.transform.position.z), shuffledCards[currentCard].transform.rotation * Quaternion.Euler(180, 0, 0));
                 currentCard++;
             }
             if (hit.collider.tag == "Card" && currentCard < 13)

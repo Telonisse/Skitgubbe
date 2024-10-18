@@ -14,7 +14,7 @@ public class DealCard : MonoBehaviour
     public void AssignCard(GameObject assignCard)
     {
         card = assignCard;
-        card.GetComponent<Card>().GrabObject(false);
+        //card.GetComponent<Card>().GrabObject(false);
         if (!isDown)
         {
             card.transform.Rotate(180, 0, 0);
