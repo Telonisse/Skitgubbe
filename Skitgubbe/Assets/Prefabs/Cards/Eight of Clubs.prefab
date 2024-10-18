@@ -316,6 +316,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 7903799553624989922}
   - {fileID: 2954832096356902330}
+  - {fileID: 8107903489872352198}
 --- !u!114 &7903799553624989922
 MonoBehaviour:
   m_ObjectHideFlags: 0
