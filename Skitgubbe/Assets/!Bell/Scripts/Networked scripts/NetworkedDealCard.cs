@@ -11,7 +11,7 @@ public class NetworkedDealCard : NetworkBehaviour
 
     public void AssignCard(GameObject assignCard)
     {
-        NetworkObject networkedCard = GetComponent<NetworkObject>();
+        NetworkObject networkedCard = assignCard.GetComponent<NetworkObject>();
         if (networkedCard != null)
         {
             networkedCardID = networkedCard.Id;
@@ -36,7 +36,6 @@ public class NetworkedDealCard : NetworkBehaviour
             if (networkedCard != null)
             {
                 card = networkedCard.gameObject;
-                card.transform.position = transform.position;
             }
         }
     }
