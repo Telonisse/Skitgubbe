@@ -23,7 +23,7 @@ public class NetworkedThrowCard : NetworkBehaviour
         }
         if (pickUpCards)
         {
-            HandleCardLogic();
+            HandleCardPickup();
         }
     }
 
@@ -85,7 +85,7 @@ public class NetworkedThrowCard : NetworkBehaviour
     }
 
     // Sync card addition across all clients
-    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    [Rpc(RpcSources.All, RpcTargets.All)]
     private void RPC_AddCardToPile(NetworkId cardId)
     {
         NetworkObject networkedCard = Runner.FindObject(cardId);
@@ -93,8 +93,8 @@ public class NetworkedThrowCard : NetworkBehaviour
         {
             GameObject card = networkedCard.gameObject;
             cards.Add(card);
-            card.transform.position = this.transform.position;  // Move to pile
-            card.SetActive(false);  // Hide card until it's the top card
+            //card.transform.position = this.transform.position;
+            //card.SetActive(false);
         }
     }
     private GameObject FindLastInactive(List<GameObject> cards)
@@ -125,11 +125,11 @@ public class NetworkedThrowCard : NetworkBehaviour
     {
         if (cards.Count > 0)
         {
-            foreach (var card in cards)
+            for (int i = 0; i < cards.Count; i++)
             {
-                card.SetActive(false);  // Hide all cards
+                cards[i].gameObject.SetActive(false);
             }
-            cards[cards.Count - 1].SetActive(true);  // Show top card
+            cards[cards.Count - 1].SetActive(true);
         }
     }
 
@@ -161,7 +161,7 @@ public class NetworkedThrowCard : NetworkBehaviour
     {
         foreach (var card in cards)
         {
-            card.GetComponent<Card>().KillCard();  // Your card-specific kill logic
+            card.GetComponent<Card>().KillCard();
             card.transform.position = killPile.transform.position;
             card.SetActive(true);
         }

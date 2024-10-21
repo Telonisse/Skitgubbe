@@ -26,7 +26,7 @@ public class NetworkedDealCardsHandler : NetworkBehaviour
         }
     }
 
-    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    [Rpc(RpcSources.All, RpcTargets.All)]
     private void RPC_AssignCardToPos()
     {
         card.transform.position = dealCardPos[CurrentDealCardPos].transform.position;
