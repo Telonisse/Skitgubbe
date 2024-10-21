@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1942334618779503728}
   - component: {fileID: 1400319423720503734}
   - component: {fileID: 18847504679272832}
+  - component: {fileID: 1612401601912440541}
   m_Layer: 0
   m_Name: QoS TouchHandGrab
   m_TagString: Untagged
@@ -96,6 +97,23 @@ MonoBehaviour:
   _boundsCollider: {fileID: 7173122323774125358}
   _colliders:
   - {fileID: 2200763768381347490}
+--- !u!114 &1612401601912440541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3917705213945796139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 567883146
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours: []
 --- !u!1 &4701102835091865734
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,7 +386,8 @@ MonoBehaviour:
   SortKey: 3841436381
   ObjectInterest: 1
   Flags: 524289
-  NestedObjects: []
+  NestedObjects:
+  - {fileID: 1612401601912440541}
   NetworkedBehaviours:
   - {fileID: 8425679635598304904}
   - {fileID: 2860961428269936738}

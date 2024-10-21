@@ -68,6 +68,7 @@ GameObject:
   - component: {fileID: 6103174698836613249}
   - component: {fileID: 3855493848327157902}
   - component: {fileID: 1001724197005466932}
+  - component: {fileID: 3640731031591937731}
   m_Layer: 0
   m_Name: NoH TouchHandGrab
   m_TagString: Untagged
@@ -152,6 +153,23 @@ MonoBehaviour:
   _boundsCollider: {fileID: 1959303599508649411}
   _colliders:
   - {fileID: 5180846947935360213}
+--- !u!114 &3640731031591937731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4176365552162357699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 2533880580
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours: []
 --- !u!1 &7319580218922925138
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,7 +386,8 @@ MonoBehaviour:
   SortKey: 3339698044
   ObjectInterest: 1
   Flags: 524289
-  NestedObjects: []
+  NestedObjects:
+  - {fileID: 3640731031591937731}
   NetworkedBehaviours:
   - {fileID: 6104015447690802465}
   - {fileID: 3416398382828994746}

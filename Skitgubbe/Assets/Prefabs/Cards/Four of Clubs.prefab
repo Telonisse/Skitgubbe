@@ -272,7 +272,8 @@ MonoBehaviour:
   SortKey: 1591442510
   ObjectInterest: 1
   Flags: 524289
-  NestedObjects: []
+  NestedObjects:
+  - {fileID: 5128816227504995533}
   NetworkedBehaviours:
   - {fileID: 5075023904979178009}
   - {fileID: 5635871283356127253}
@@ -332,6 +333,7 @@ GameObject:
   - component: {fileID: 2839422734471726224}
   - component: {fileID: 4087165340315831975}
   - component: {fileID: 9012509227942029778}
+  - component: {fileID: 5128816227504995533}
   m_Layer: 0
   m_Name: FoC TouchHandGrab
   m_TagString: Untagged
@@ -416,3 +418,20 @@ MonoBehaviour:
   _boundsCollider: {fileID: 1651312538260636061}
   _colliders:
   - {fileID: 147694480008376818}
+--- !u!114 &5128816227504995533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5840568029143890785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 671121432
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours: []

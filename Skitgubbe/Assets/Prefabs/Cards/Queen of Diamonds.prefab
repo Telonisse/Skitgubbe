@@ -216,7 +216,8 @@ MonoBehaviour:
   SortKey: 1529127746
   ObjectInterest: 1
   Flags: 524289
-  NestedObjects: []
+  NestedObjects:
+  - {fileID: 6648374179563071081}
   NetworkedBehaviours:
   - {fileID: 6858609211004683893}
   - {fileID: 4390917330564071896}
@@ -276,6 +277,7 @@ GameObject:
   - component: {fileID: 6890848328194497155}
   - component: {fileID: 1527686278690766575}
   - component: {fileID: 5178739045655510339}
+  - component: {fileID: 6648374179563071081}
   m_Layer: 0
   m_Name: QoD TouchHandGrab
   m_TagString: Untagged
@@ -360,6 +362,23 @@ MonoBehaviour:
   _boundsCollider: {fileID: 7338070992032113828}
   _colliders:
   - {fileID: 7103881990063258288}
+--- !u!114 &6648374179563071081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5674320679153523350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 121251100
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours: []
 --- !u!1 &6806142115282990486
 GameObject:
   m_ObjectHideFlags: 0

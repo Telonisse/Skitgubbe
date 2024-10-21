@@ -272,7 +272,8 @@ MonoBehaviour:
   SortKey: 3844812996
   ObjectInterest: 1
   Flags: 524289
-  NestedObjects: []
+  NestedObjects:
+  - {fileID: 8226986097510271988}
   NetworkedBehaviours:
   - {fileID: 8795098327886752907}
   - {fileID: 5607953348411523579}
@@ -332,6 +333,7 @@ GameObject:
   - component: {fileID: 4067614196479755579}
   - component: {fileID: 736383521479325785}
   - component: {fileID: 7558843068600032578}
+  - component: {fileID: 8226986097510271988}
   m_Layer: 0
   m_Name: AoC TouchHandGrab
   m_TagString: Untagged
@@ -416,3 +418,20 @@ MonoBehaviour:
   _boundsCollider: {fileID: 1272591845402657394}
   _colliders:
   - {fileID: 3301601293931805615}
+--- !u!114 &8226986097510271988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991361144497062769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 711747477
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours: []
