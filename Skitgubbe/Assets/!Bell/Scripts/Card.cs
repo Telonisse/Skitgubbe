@@ -17,7 +17,7 @@ public class Card : NetworkBehaviour
     }
 
     // The RPC that is called to synchronize the object state across clients
-    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    [Rpc(RpcSources.All, RpcTargets.All)]
     private void RPC_ToggleObjectState(bool isActive)
     {
         grabObject.SetActive(isActive);

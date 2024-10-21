@@ -45,4 +45,19 @@ public class NetworkedDealCardsHandler : NetworkBehaviour
         }
         return false;
     }
+    //TURN OFF GRABBABLE
+    public void TurnOffAllDealtCardsGrabbable()
+    {
+        if (HasStateAuthority)
+        {
+            foreach (var card in cards)
+            {
+                Card cardScript = card.GetComponent<Card>();
+                if (cardScript != null)
+                {
+                    cardScript.ToggleObjectActiveState(false);
+                }
+            }
+        }
+    }
 }
