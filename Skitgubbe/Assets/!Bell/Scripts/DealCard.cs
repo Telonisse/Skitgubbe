@@ -9,8 +9,6 @@ public class DealCard : MonoBehaviour
     [SerializeField] GameObject card;
     [SerializeField] bool isDown;
 
-    [SerializeField] NetworkRunner runner;
-
     public void AssignCard(GameObject assignCard)
     {
         card = assignCard;
