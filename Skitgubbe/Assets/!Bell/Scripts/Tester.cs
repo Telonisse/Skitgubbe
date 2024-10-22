@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class Tester : MonoBehaviour
 {
-    [SerializeField] IInteractor interactor;
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        interactor = GetComponentInChildren<IInteractor>();
-        if (interactor != null)
+        if (other.tag == "Card")
         {
-            Debug.Log("found");
+            other.GetComponentInChildren<IInteractor>().Unselect();
+            Debug.Log("Deselected" + other.gameObject.name);
+            other.GetComponentInChildren<IInteractor>().Select();
         }
     }
 }

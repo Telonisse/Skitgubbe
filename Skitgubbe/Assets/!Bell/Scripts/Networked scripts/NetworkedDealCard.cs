@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using Oculus.Interaction;
 
 public class NetworkedDealCard : NetworkBehaviour
 {
@@ -48,5 +49,10 @@ public class NetworkedDealCard : NetworkBehaviour
     public bool IsDown()
     {
         return isDown;
+    }
+
+    public bool IsGrabbed()
+    {
+        return card.GetComponent<Card>().IsGrabbed();
     }
 }

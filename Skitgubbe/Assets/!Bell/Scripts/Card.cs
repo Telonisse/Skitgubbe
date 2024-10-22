@@ -9,6 +9,7 @@ public class Card : NetworkBehaviour
     [SerializeField] bool isDead = false;
 
     [SerializeField] GameObject grabObject;
+    [Networked] public bool isGrabbed { get; set; } = false;
 
     public void ToggleObjectActiveState(bool isActive)
     {
@@ -37,5 +38,19 @@ public class Card : NetworkBehaviour
     {
         isDead = true;
         ToggleObjectActiveState(false);
+    }
+    public void GrabCard()
+    {
+        if (HasStateAuthority)  // Only the server (authority) updates this
+        {
+            isGrabbed = true;  // Set the networked grab state to true
+            Debug.Log("Card grabbed.");
+        }
+    }
+
+    // Function to check if the card has been grabbed (returns the networked bool)
+    public bool IsGrabbed()
+    {
+        return isGrabbed;
     }
 }
