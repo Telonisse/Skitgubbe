@@ -110,4 +110,16 @@ public class NetworkedCardHandler : NetworkBehaviour
         yield return new WaitForSeconds(1);
         cardSpawned = false;
     }
+
+    public bool HasDealtAllCards()
+    {
+        if (currentCardIndex >= 52)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

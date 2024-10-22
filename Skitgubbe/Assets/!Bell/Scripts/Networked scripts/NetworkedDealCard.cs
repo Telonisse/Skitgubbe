@@ -26,7 +26,6 @@ public class NetworkedDealCard : NetworkBehaviour
         {
             Debug.LogError("Assigned card isnt networked");
         }
-        //card.GetComponent<Card>().GrabObject(false);
     }
 
     public override void FixedUpdateNetwork()
@@ -39,5 +38,15 @@ public class NetworkedDealCard : NetworkBehaviour
                 card = networkedCard.gameObject;
             }
         }
+    }
+
+    public void TurnOnCards()
+    {
+        card.GetComponent<Card>().ToggleObjectActiveState(true);
+    }
+
+    public bool IsDown()
+    {
+        return isDown;
     }
 }

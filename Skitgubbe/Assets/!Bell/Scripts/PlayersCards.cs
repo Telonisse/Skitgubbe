@@ -4,21 +4,47 @@ using UnityEngine;
 
 public class PlayersCards : MonoBehaviour
 {
-    public Vector3 corner1;
-    public Vector3 corner2;
+    [SerializeField] GameObject corner1;
+    [SerializeField] GameObject corner2;
 
     // Position P to check
-    public Vector3 positionP;
+    [SerializeField] Vector3 positionP;
+    [SerializeField] OVRManager ovrm;
 
+    [SerializeField] bool yourCards;
+
+    [SerializeField] NetworkedDealCard[] cardHandlers;
+    private void Start()
+    {
+        ovrm = FindAnyObjectByType<OVRManager>();
+    }
     void Update()
     {
-        if (IsPointInBox(positionP, corner1, corner2))
+        positionP = ovrm.GetComponent<OVRCameraRig>().centerEyeAnchor.transform.position;
+
+        if (IsPointInBox(positionP, corner1.transform.position, corner2.transform.position))
         {
-            Debug.Log("Position P is inside the box.");
+            yourCards = true;
         }
         else
         {
-            Debug.Log("Position P is outside the box.");
+            yourCards = false;
+        }
+        IsYourCards();
+    }
+
+    private void IsYourCards()
+    {
+        if (yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards()) //&& has0CardsOnHand
+        {
+            foreach (NetworkedDealCard card in cardHandlers)
+            {
+                if (!card.IsDown())
+                {
+                    Debug.Log("Upper cards turned on");
+                    card.TurnOnCards();
+                }
+            }
         }
     }
 
@@ -30,8 +56,7 @@ public class PlayersCards : MonoBehaviour
         Vector3 max = Vector3.Max(corner1, corner2);
 
         // Check if P is within bounds on all axes
-        return (P.x >= min.x && P.x <= max.x) &&
-               (P.y >= min.y && P.y <= max.y) &&
-               (P.z >= min.z && P.z <= max.z);
+        //return (P.x >= min.x && P.x <= max.x) && (P.y >= min.y && P.y <= max.y) && (P.z >= min.z && P.z <= max.z);
+        return (P.x >= min.x && P.x <= max.x) && (P.z >= min.z && P.z <= max.z);
     }
 }
