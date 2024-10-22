@@ -16,6 +16,7 @@ public class NetworkedDealCard : NetworkBehaviour
         {
             networkedCardID = networkedCard.Id;
             card = assignCard;
+            card.GetComponent<Card>().ToggleObjectActiveState(false);
             if (!isDown)
             {
                 card.transform.Rotate(180, 0, 0);

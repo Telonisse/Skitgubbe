@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using Meta.WitAi;
 
 public class NetworkedThrowCard : NetworkBehaviour
 {
@@ -34,25 +35,44 @@ public class NetworkedThrowCard : NetworkBehaviour
 
     private void HandleCardLogic()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(new Vector3(this.transform.position.x, this.transform.position.y + 0.2f, this.transform.position.z), Vector3.down, out hit, 1f))
-        {
-            if (hit.collider.tag == "Card" && IsCardInPile(hit.collider.gameObject) == false)
-            {
-                if (!first)
-                {
-                    AddCardToPile(hit.collider.gameObject);
-                    first = true;
-                }
-                else if (hit.collider.GetComponent<Card>().GetCardNum() >= cards[cards.Count - 1].GetComponent<Card>().GetCardNum() || hit.collider.GetComponent<Card>().GetCardNum() == 2 || hit.collider.GetComponent<Card>().GetCardNum() == 10)
-                {
-                    AddCardToPile(hit.collider.gameObject);
-                }
-            }
-        }
+        //RaycastHit hit;
+        //if (Physics.Raycast(new Vector3(this.transform.position.x, this.transform.position.y + 0.2f, this.transform.position.z), Vector3.down, out hit, 1f))
+        //{
+        //    if (hit.collider.tag == "Card" && IsCardInPile(hit.collider.gameObject) == false)
+        //    {
+        //        if (!first)
+        //        {
+        //            AddCardToPile(hit.collider.gameObject);
+        //            first = true;
+        //        }
+        //        else if (hit.collider.GetComponent<Card>().GetCardNum() >= cards[cards.Count - 1].GetComponent<Card>().GetCardNum() || hit.collider.GetComponent<Card>().GetCardNum() == 2 || hit.collider.GetComponent<Card>().GetCardNum() == 10)
+        //        {
+        //            AddCardToPile(hit.collider.gameObject);
+        //        }
+        //    }
+        //}
         ShowLastCard();
         CheckFor10();
         CheckLast4();
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Card" && IsCardInPile(other.gameObject) == false)
+        {
+            Card cardscript = other.GetComponent<Card>();
+            if (cardscript != null)
+            {
+                if (!first)
+                {
+                    AddCardToPile(other.gameObject);
+                    first = true;
+                }
+                else if (other.GetComponent<Card>().GetCardNum() >= cards[cards.Count - 1].GetComponent<Card>().GetCardNum() || other.GetComponent<Card>().GetCardNum() == 2 || other.GetComponent<Card>().GetCardNum() == 10)
+                {
+                    AddCardToPile(other.gameObject);
+                }
+            }
+        }
     }
 
     private void HandleCardPickup()
@@ -144,7 +164,7 @@ public class NetworkedThrowCard : NetworkBehaviour
 
             if (a == b && b == c && c == d)
             {
-                KillCards();
+                RPC_KillCards();
             }
         }
     }
@@ -153,8 +173,14 @@ public class NetworkedThrowCard : NetworkBehaviour
     {
         if (cards.Count > 0 && cards[cards.Count - 1].GetComponent<Card>().GetCardNum() == 10)
         {
-            KillCards();
+            RPC_KillCards();
         }
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    private void RPC_KillCards()
+    {
+        KillCards();
     }
 
     private void KillCards()

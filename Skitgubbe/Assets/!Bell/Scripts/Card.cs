@@ -36,5 +36,6 @@ public class Card : NetworkBehaviour
     public void KillCard()
     {
         isDead = true;
+        ToggleObjectActiveState(false);
     }
 }

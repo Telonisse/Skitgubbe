@@ -1,6 +1,7 @@
 using Meta.WitAi;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ThrowCardHandler : MonoBehaviour
@@ -13,6 +14,9 @@ public class ThrowCardHandler : MonoBehaviour
 
     void Update()
     {
+        OVRManager m = FindAnyObjectByType<OVRManager>();
+        Vector3 pos = m.GetComponent<OVRCameraRig>().centerEyeAnchor.transform.position;
+
         if (pickUpCards == false)
         {
             RaycastHit hit;
