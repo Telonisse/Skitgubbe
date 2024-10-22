@@ -184,13 +184,15 @@ GameObject:
   m_Component:
   - component: {fileID: 40791760}
   - component: {fileID: 40791759}
+  - component: {fileID: 40791762}
+  - component: {fileID: 40791761}
   m_Layer: 0
   m_Name: HeldCard6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &40791759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +228,80 @@ Transform:
   - {fileID: 1970039598}
   m_Father: {fileID: 2127565721}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 56.809}
+--- !u!114 &40791761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40791758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15df27d4d3c10ac4481e6621103677ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSnappedBool: 0
+--- !u!114 &40791762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40791758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactableView: {fileID: 40791759}
+  _whenHover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenUnhover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 40791761}
+        m_TargetAssemblyTypeName: Snapped, Assembly-CSharp
+        m_MethodName: IsSnapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 40791761}
+        m_TargetAssemblyTypeName: Snapped, Assembly-CSharp
+        m_MethodName: IsNotSnapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &67461968
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,6 +890,8 @@ GameObject:
   m_Component:
   - component: {fileID: 195794324}
   - component: {fileID: 195794325}
+  - component: {fileID: 195794327}
+  - component: {fileID: 195794326}
   m_Layer: 0
   m_Name: HeldCard3
   m_TagString: Untagged
@@ -856,6 +934,80 @@ MonoBehaviour:
   _rigidbody: {fileID: 1635189515}
   _snapPoseDelegate: {fileID: 0}
   _movementProvider: {fileID: 0}
+--- !u!114 &195794326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195794323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15df27d4d3c10ac4481e6621103677ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSnappedBool: 0
+--- !u!114 &195794327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195794323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactableView: {fileID: 195794325}
+  _whenHover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenUnhover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 195794326}
+        m_TargetAssemblyTypeName: Snapped, Assembly-CSharp
+        m_MethodName: IsSnapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 195794326}
+        m_TargetAssemblyTypeName: Snapped, Assembly-CSharp
+        m_MethodName: IsNotSnapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &207037787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1778,13 +1930,15 @@ GameObject:
   m_Component:
   - component: {fileID: 679634418}
   - component: {fileID: 679634417}
+  - component: {fileID: 679634420}
+  - component: {fileID: 679634419}
   m_Layer: 0
   m_Name: HeldCard7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &679634417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1820,6 +1974,80 @@ Transform:
   - {fileID: 1325017832}
   m_Father: {fileID: 2127565721}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 64.226}
+--- !u!114 &679634419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679634416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15df27d4d3c10ac4481e6621103677ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSnappedBool: 0
+--- !u!114 &679634420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679634416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactableView: {fileID: 679634417}
+  _whenHover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenUnhover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 679634419}
+        m_TargetAssemblyTypeName: Snapped, Assembly-CSharp
+        m_MethodName: IsSnapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 679634419}
+        m_TargetAssemblyTypeName: Snapped, Assembly-CSharp
+        m_MethodName: IsNotSnapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &688375164
 GameObject:
   m_ObjectHideFlags: 0
@@ -3498,6 +3726,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1545078184}
   - component: {fileID: 1545078183}
+  - component: {fileID: 1545078185}
+  - component: {fileID: 1545078186}
   m_Layer: 0
   m_Name: HeldCard1
   m_TagString: Untagged
@@ -3540,6 +3770,80 @@ Transform:
   - {fileID: 1339068773}
   m_Father: {fileID: 2127565721}
   m_LocalEulerAnglesHint: {x: -90, y: 45, z: 9}
+--- !u!114 &1545078185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545078182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactableView: {fileID: 1545078183}
+  _whenHover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenUnhover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1545078186}
+        m_TargetAssemblyTypeName: Snapped, Assembly-CSharp
+        m_MethodName: IsSnapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1545078186}
+        m_TargetAssemblyTypeName: Snapped, Assembly-CSharp
+        m_MethodName: IsNotSnapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1545078186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545078182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15df27d4d3c10ac4481e6621103677ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSnappedBool: 0
 --- !u!1001 &1545727831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3804,7 +4108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9282534b1036589408a85e5e11d06065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObjectsToActivate:
+  snapPoints:
   - {fileID: 1545078182}
   - {fileID: 1662624262}
   - {fileID: 195794323}
@@ -3813,8 +4117,6 @@ MonoBehaviour:
   - {fileID: 40791758}
   - {fileID: 679634416}
   - {fileID: 2105194159}
-  cardCount: 0
-  delayBeforeTurnOff: 1
 --- !u!1 &1662624262
 GameObject:
   m_ObjectHideFlags: 0
@@ -3825,6 +4127,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1662624264}
   - component: {fileID: 1662624263}
+  - component: {fileID: 1662624266}
+  - component: {fileID: 1662624265}
   m_Layer: 0
   m_Name: HeldCard2
   m_TagString: Untagged
@@ -3867,6 +4171,80 @@ Transform:
   - {fileID: 1367224589}
   m_Father: {fileID: 2127565721}
   m_LocalEulerAnglesHint: {x: -90, y: 45, z: 20}
+--- !u!114 &1662624265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662624262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15df27d4d3c10ac4481e6621103677ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSnappedBool: 0
+--- !u!114 &1662624266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662624262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactableView: {fileID: 1662624263}
+  _whenHover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenUnhover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1662624265}
+        m_TargetAssemblyTypeName: Snapped, Assembly-CSharp
+        m_MethodName: IsSnapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1662624265}
+        m_TargetAssemblyTypeName: Snapped, Assembly-CSharp
+        m_MethodName: IsNotSnapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1708841336 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2168138017581604070, guid: f54012181eacade4ea242c65f804720f,
@@ -3919,13 +4297,15 @@ GameObject:
   m_Component:
   - component: {fileID: 1721579351}
   - component: {fileID: 1721579350}
+  - component: {fileID: 1721579353}
+  - component: {fileID: 1721579352}
   m_Layer: 0
   m_Name: HeldCard5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1721579350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3961,6 +4341,80 @@ Transform:
   - {fileID: 67461969}
   m_Father: {fileID: 2127565721}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 49.516}
+--- !u!114 &1721579352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721579349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15df27d4d3c10ac4481e6621103677ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSnappedBool: 0
+--- !u!114 &1721579353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721579349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactableView: {fileID: 1721579350}
+  _whenHover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenUnhover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1721579352}
+        m_TargetAssemblyTypeName: Snapped, Assembly-CSharp
+        m_MethodName: IsSnapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1721579352}
+        m_TargetAssemblyTypeName: Snapped, Assembly-CSharp
+        m_MethodName: IsNotSnapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1741788037 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2483171112402218544, guid: f54012181eacade4ea242c65f804720f,
@@ -4805,13 +5259,15 @@ GameObject:
   m_Component:
   - component: {fileID: 2105194160}
   - component: {fileID: 2105194161}
+  - component: {fileID: 2105194163}
+  - component: {fileID: 2105194162}
   m_Layer: 0
   m_Name: HeldCard8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2105194160
 Transform:
   m_ObjectHideFlags: 0
@@ -4847,6 +5303,80 @@ MonoBehaviour:
   _rigidbody: {fileID: 1635189515}
   _snapPoseDelegate: {fileID: 0}
   _movementProvider: {fileID: 0}
+--- !u!114 &2105194162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105194159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15df27d4d3c10ac4481e6621103677ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSnappedBool: 0
+--- !u!114 &2105194163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105194159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactableView: {fileID: 2105194161}
+  _whenHover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenUnhover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2105194162}
+        m_TargetAssemblyTypeName: Snapped, Assembly-CSharp
+        m_MethodName: IsSnapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2105194162}
+        m_TargetAssemblyTypeName: Snapped, Assembly-CSharp
+        m_MethodName: IsNotSnapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2108421010
 GameObject:
   m_ObjectHideFlags: 0
@@ -4980,13 +5510,15 @@ GameObject:
   m_Component:
   - component: {fileID: 2132015277}
   - component: {fileID: 2132015278}
+  - component: {fileID: 2132015280}
+  - component: {fileID: 2132015279}
   m_Layer: 0
   m_Name: HeldCard4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2132015277
 Transform:
   m_ObjectHideFlags: 0
@@ -5022,6 +5554,80 @@ MonoBehaviour:
   _rigidbody: {fileID: 1635189515}
   _snapPoseDelegate: {fileID: 0}
   _movementProvider: {fileID: 0}
+--- !u!114 &2132015279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132015276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15df27d4d3c10ac4481e6621103677ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSnappedBool: 0
+--- !u!114 &2132015280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132015276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactableView: {fileID: 2132015278}
+  _whenHover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenUnhover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2132015279}
+        m_TargetAssemblyTypeName: Snapped, Assembly-CSharp
+        m_MethodName: IsSnapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2132015279}
+        m_TargetAssemblyTypeName: Snapped, Assembly-CSharp
+        m_MethodName: IsNotSnapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &513831014866495849
 Transform:
   m_ObjectHideFlags: 0
