@@ -4,59 +4,52 @@ using UnityEngine;
 
 public class SnapCounter : MonoBehaviour
 {
-    public List<GameObject> gameObjectsToActivate; // Assign GameObjects in the inspector (at least 23)
-    public int cardCount = 0;
-    public float delayBeforeTurnOff = 0.5f; // Delay in seconds before deactivating snap points
+    public List<GameObject> snapPoints; 
+    private int currentSnapIndex = 3;
 
-    
-    private void OnTriggerEnter(Collider other)
+    void Start()
     {
-        if (other.CompareTag("Card"))
+        for (int i = 0; i < 3; i++)
         {
-            cardCount++;
-
-            // Ensure cardCount does not exceed the maximum allowed (up to 21 cards + 2 extra GameObjects)
-            cardCount = Mathf.Clamp(cardCount, 0, gameObjectsToActivate.Count - 1);
-
-            // Update GameObjects immediately
-            UpdateGameObjects();
+            snapPoints[i].SetActive(true);
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    void Update()
     {
-        if (other.CompareTag("Card"))
+        UpdateSnapPoints();
+    }
+
+    void UpdateSnapPoints()
+    {
+        int lastSnappedIndex = GetLastSnappedIndex();
+
+   
+        if (lastSnappedIndex == currentSnapIndex - 1 && currentSnapIndex < snapPoints.Count)
         {
-            cardCount--;
-
-            // Ensure cardCount does not go below 0
-            cardCount = Mathf.Clamp(cardCount, 0, gameObjectsToActivate.Count - 1);
-
-            // Delay turning off GameObjects after a card exits
-            StartCoroutine(DelayedUpdateGameObjects());
+            snapPoints[currentSnapIndex].SetActive(true);
+            currentSnapIndex++;
         }
-    }
-
-    private IEnumerator DelayedUpdateGameObjects()
-    {
-        // Wait for the specified delay before updating GameObjects
-        yield return new WaitForSeconds(delayBeforeTurnOff);
-        UpdateGameObjects();
-    }
-
-    private void UpdateGameObjects()
-    {
-        // Activate GameObjects based on the card count + 2
-        for (int i = 0; i < gameObjectsToActivate.Count; i++)
+        else if (lastSnappedIndex < currentSnapIndex - 2 && currentSnapIndex > 3)
         {
-            if (i < cardCount + 2)
+            currentSnapIndex--;
+            snapPoints[currentSnapIndex].SetActive(false);
+        }
+        
+    }
+
+    int GetLastSnappedIndex()
+    {
+        // Find the highest index where the snap point is snapped
+        for (int i = snapPoints.Count - 1; i >= 0; i--)
+        {
+            Snapped snappedScript = snapPoints[i].GetComponent<Snapped>();
+            if (snappedScript != null && snappedScript.isSnappedBool)
             {
-                gameObjectsToActivate[i].SetActive(true);  // Turn on extra GameObjects (cardCount + 2)
-            }
-            else
-            {
-                gameObjectsToActivate[i].SetActive(false); // Turn off the rest
+                return i; 
             }
         }
+
+        return -1; 
     }
 }
