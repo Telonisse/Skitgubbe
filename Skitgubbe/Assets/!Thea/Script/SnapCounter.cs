@@ -43,7 +43,7 @@ public class SnapCounter : MonoBehaviour
     {
         if (other.CompareTag("Card") && IsOnlyOneSnapped())
         {
-            
+            Debug.LogError("only one snapped and Card is in hand");
         }
     }
 
@@ -63,7 +63,6 @@ public class SnapCounter : MonoBehaviour
 
      public bool AreAllSnapPointsUnsnappped()
      {
-        
         foreach (GameObject snapPoint in snapPoints)
         {
             Snapped snappedScript = snapPoint.GetComponent<Snapped>();
