@@ -39,6 +39,14 @@ public class SnapCounter : MonoBehaviour
         
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Card") && IsOnlyOneSnapped())
+        {
+            
+        }
+    }
+
     int GetLastSnappedIndex()
     {
         for (int i = snapPoints.Count - 1; i >= 0; i--)
@@ -66,4 +74,24 @@ public class SnapCounter : MonoBehaviour
         }
         return true; 
      }
+
+    public bool IsOnlyOneSnapped()
+    {
+        int snappedCount = 0;
+        foreach (GameObject snapPoint in snapPoints)
+        {
+            Snapped snappedScript = snapPoint.GetComponent<Snapped>();
+            if (snappedScript != null && snappedScript.isSnappedBool)
+            {
+                snappedCount++;
+            }
+
+            if (snappedCount > 1)  // Early exit if more than 1 is snapped
+            {
+                return false;
+            }
+        }
+
+        return snappedCount == 1;  // True only if exactly one is snapped
+    }
 }
