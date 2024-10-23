@@ -37,7 +37,7 @@ public class PlayersCards : MonoBehaviour
 
     private void IsYourCards()
     {
-        if (yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards() && AllCardsGrabbed() == false) //&& has0CardsOnHand
+        if (yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards() && AllCardsGrabbed() == false && FindObjectOfType<SnapCounter>().AreAllSnapPointsUnsnappped() == true)
         {
             foreach (NetworkedDealCard card in cardHandlers)
             {
@@ -49,7 +49,7 @@ public class PlayersCards : MonoBehaviour
                 }
             }
         }
-        if (yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards() && AllCardsGrabbed() == true) //&& has0CardsOnHand
+        if (yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards() && AllCardsGrabbed() == true && FindObjectOfType<SnapCounter>().AreAllSnapPointsUnsnappped() == true)
         {
             foreach (NetworkedDealCard card in cardHandlers)
             {
