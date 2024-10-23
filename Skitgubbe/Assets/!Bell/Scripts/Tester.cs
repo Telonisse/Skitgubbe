@@ -2,16 +2,29 @@ using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
-public class Tester : MonoBehaviour
+public class Tester : NetworkBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    [SerializeField] GameObject win;
+
+    private void Update()
     {
-        if (other.tag == "Card")
+        Debug.Log("snapcounter = " + FindObjectOfType<SnapCounter>().LastCardThrow());
+        if (GetComponent<PlayersCards>().YourCards() == true && GetComponent<PlayersCards>().NoCardsLeft() == true && FindObjectOfType<SnapCounter>().AreAllSnapPointsUnsnappped() == true && FindObjectOfType<SnapCounter>().LastCardThrow() == true)
         {
-            other.GetComponentInChildren<IInteractor>().Unselect();
-            Debug.Log("Deselected" + other.gameObject.name);
-            other.GetComponentInChildren<IInteractor>().Select();
+            ToggleObjectActiveState(true);
         }
+    }
+
+    void ToggleObjectActiveState(bool isActive)
+    {
+        RPC_ToggleObjectState(isActive);
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    private void RPC_ToggleObjectState(bool isActive)
+    {
+        win.SetActive(isActive);
     }
 }

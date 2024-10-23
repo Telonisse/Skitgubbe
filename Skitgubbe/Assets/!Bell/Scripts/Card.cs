@@ -9,8 +9,8 @@ public class Card : NetworkBehaviour
     [SerializeField] bool isDead = false;
 
     [SerializeField] GameObject grabObject;
-    [Networked] public bool isGrabbed { get; set; } = false;
-    [Networked] public bool isThrown { get; set; } = false;
+    [Networked] public bool isGrabbed { get; set; }
+    [Networked] public bool isThrown { get; set; }
 
     public void ToggleObjectActiveState(bool isActive)
     {

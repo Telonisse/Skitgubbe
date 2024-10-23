@@ -33,8 +33,10 @@ public class PlayersCards : MonoBehaviour
             yourCards = false;
         }
         IsYourCards();
-
-        Debug.Log(NoCardsLeft());
+        if ( yourCards)
+        {
+            Debug.Log(NoCardsLeft());
+        }
     }
 
     private void IsYourCards()

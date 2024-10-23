@@ -35,7 +35,7 @@ public class NetworkedThrowCard : NetworkBehaviour
 
     private void HandleCardLogic()
     {
-        ShowLastCard();
+        //ShowLastCard();
         CheckFor10();
         CheckLast4();
     }
