@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 8795098327886752907}
   - component: {fileID: 5607953348411523579}
   - component: {fileID: 4050271365578519008}
+  - component: {fileID: 7596315544799273285}
   m_Layer: 0
   m_Name: Ace of Clubs
   m_TagString: Card
@@ -113,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: e9b4b64f-1c7e-4dff-8f3c-ce409bdc3951
-  instanceId: ac7d003c-a19d-4213-ad15-5ddd0434c011
+  instanceId: 8a89e2b2-448e-4740-924f-9a95785063e7
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 54548176-30f4-4a4a-8057-340a383c6102
@@ -321,6 +322,56 @@ MonoBehaviour:
   cardNumber: 14
   isDead: 0
   grabObject: {fileID: 5991361144497062769}
+  _isGrabbed: 0
+--- !u!114 &7596315544799273285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4716811664297286825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactableView: {fileID: 7558843068600032578}
+  _whenHover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenUnhover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4050271365578519008}
+        m_TargetAssemblyTypeName: Card, Assembly-CSharp
+        m_MethodName: GrabCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5991361144497062769
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 4e14e0ba-51f2-4a5c-a822-e304bf36d48c
-  instanceId: 40224f47-db6e-4022-9b8e-da8d4a57da84
+  instanceId: d43c5c3b-9673-4df5-804a-13d85a146dad
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: fb25cac7-8f37-455d-ac01-3fa41a1be37d

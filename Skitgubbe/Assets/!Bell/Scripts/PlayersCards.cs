@@ -26,6 +26,7 @@ public class PlayersCards : MonoBehaviour
         if (IsPointInBox(positionP, corner1.transform.position, corner2.transform.position))
         {
             yourCards = true;
+            Debug.Log("In pos");
         }
         else
         {
@@ -36,7 +37,7 @@ public class PlayersCards : MonoBehaviour
 
     private void IsYourCards()
     {
-        if (yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards()) //&& has0CardsOnHand
+        if (yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards() && AllCardsGrabbed() == false) //&& has0CardsOnHand
         {
             foreach (NetworkedDealCard card in cardHandlers)
             {
@@ -44,19 +45,42 @@ public class PlayersCards : MonoBehaviour
                 {
                     Debug.Log("Upper cards turned on");
                     card.TurnOnCards();
+                    Debug.Log(card.IsGrabbed());
                 }
             }
         }
+        if (yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards() && AllCardsGrabbed() == true) //&& has0CardsOnHand
+        {
+            foreach (NetworkedDealCard card in cardHandlers)
+            {
+                if (card.IsDown())
+                {
+                    Debug.Log("Lower cards turned on");
+                    card.TurnOnCards();
+                }
+            }
+        }
+
     }
 
-    // Function to check if point P is inside the box
+    bool AllCardsGrabbed()
+    {
+        bool grabbedAll = true;
+        foreach (NetworkedDealCard card in cardHandlers)
+        {
+            if (!card.IsGrabbed() && !card.IsDown())
+            {
+                grabbedAll = false;
+            }
+        }
+        return grabbedAll;
+    }
+
     bool IsPointInBox(Vector3 P, Vector3 corner1, Vector3 corner2)
     {
-        // Calculate the min and max bounds of the box
         Vector3 min = Vector3.Min(corner1, corner2);
         Vector3 max = Vector3.Max(corner1, corner2);
 
-        // Check if P is within bounds on all axes
         //return (P.x >= min.x && P.x <= max.x) && (P.y >= min.y && P.y <= max.y) && (P.z >= min.z && P.z <= max.z);
         return (P.x >= min.x && P.x <= max.x) && (P.z >= min.z && P.z <= max.z);
     }
