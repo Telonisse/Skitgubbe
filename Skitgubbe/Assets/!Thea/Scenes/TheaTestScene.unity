@@ -5039,6 +5039,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2729912565525445244, guid: c46602bf49e460a418e174cd5a1442bd,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2895103164583303165, guid: c46602bf49e460a418e174cd5a1442bd,
         type: 3}
       propertyPath: SortKey
