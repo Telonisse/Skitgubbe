@@ -22,6 +22,7 @@ public class NetworkedDealCard : NetworkBehaviour
             {
                 card.transform.Rotate(180, 0, 0);
             }
+            card.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
         else
         {
@@ -44,6 +45,7 @@ public class NetworkedDealCard : NetworkBehaviour
     public void TurnOnCards()
     {
         card.GetComponent<Card>().ToggleObjectActiveState(true);
+        card.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
     }
 
     public bool IsDown()
@@ -53,11 +55,25 @@ public class NetworkedDealCard : NetworkBehaviour
 
     public bool IsGrabbed()
     {
-        return card.GetComponent<Card>().IsGrabbed();
+        if (card != null)
+        {
+            return card.GetComponent<Card>().IsGrabbed();
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public bool IsThrown()
     {
-        return card.GetComponent<Card>().IsThrown();
+        if (card != null)
+        {
+            return card.GetComponent<Card>().IsThrown();
+        }
+        else
+        {
+            return false;
+        }
     }
 }

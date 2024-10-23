@@ -52,7 +52,14 @@ public class SnapCounter : MonoBehaviour
 
     public bool LastCardThrow()
     {
-        return lastCardThrown.GetComponent<Card>().IsThrown();
+        if (lastCardThrown != null)
+        {
+            return lastCardThrown.GetComponent<Card>().IsThrown();
+        }
+        else
+        {
+            return false;
+        }
     }
 
     int GetLastSnappedIndex()
