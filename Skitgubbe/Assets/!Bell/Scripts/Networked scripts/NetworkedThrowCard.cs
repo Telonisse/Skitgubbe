@@ -35,22 +35,6 @@ public class NetworkedThrowCard : NetworkBehaviour
 
     private void HandleCardLogic()
     {
-        //RaycastHit hit;
-        //if (Physics.Raycast(new Vector3(this.transform.position.x, this.transform.position.y + 0.2f, this.transform.position.z), Vector3.down, out hit, 1f))
-        //{
-        //    if (hit.collider.tag == "Card" && IsCardInPile(hit.collider.gameObject) == false)
-        //    {
-        //        if (!first)
-        //        {
-        //            AddCardToPile(hit.collider.gameObject);
-        //            first = true;
-        //        }
-        //        else if (hit.collider.GetComponent<Card>().GetCardNum() >= cards[cards.Count - 1].GetComponent<Card>().GetCardNum() || hit.collider.GetComponent<Card>().GetCardNum() == 2 || hit.collider.GetComponent<Card>().GetCardNum() == 10)
-        //        {
-        //            AddCardToPile(hit.collider.gameObject);
-        //        }
-        //    }
-        //}
         ShowLastCard();
         CheckFor10();
         CheckLast4();
@@ -65,11 +49,13 @@ public class NetworkedThrowCard : NetworkBehaviour
                 if (!first)
                 {
                     AddCardToPile(other.gameObject);
+                    other.GetComponent<Card>().SetIsThrown(true);
                     first = true;
                 }
                 else if (other.GetComponent<Card>().GetCardNum() >= cards[cards.Count - 1].GetComponent<Card>().GetCardNum() || other.GetComponent<Card>().GetCardNum() == 2 || other.GetComponent<Card>().GetCardNum() == 10)
                 {
                     AddCardToPile(other.gameObject);
+                    other.GetComponent<Card>().SetIsThrown(true);
                 }
             }
         }
@@ -86,6 +72,7 @@ public class NetworkedThrowCard : NetworkBehaviour
                 if (lastInactiveObject != null)
                 {
                     lastInactiveObject.SetActive(true);
+                    hit.collider.GetComponent<Card>().SetIsThrown(false);
                 }
                 else
                 {

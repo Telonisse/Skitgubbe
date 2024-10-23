@@ -55,4 +55,9 @@ public class NetworkedDealCard : NetworkBehaviour
     {
         return card.GetComponent<Card>().IsGrabbed();
     }
+
+    public bool IsThrown()
+    {
+        return card.GetComponent<Card>().IsThrown();
+    }
 }

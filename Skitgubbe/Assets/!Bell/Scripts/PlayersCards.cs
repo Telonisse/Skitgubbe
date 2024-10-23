@@ -33,6 +33,8 @@ public class PlayersCards : MonoBehaviour
             yourCards = false;
         }
         IsYourCards();
+
+        Debug.Log(NoCardsLeft());
     }
 
     private void IsYourCards()
@@ -83,5 +85,23 @@ public class PlayersCards : MonoBehaviour
 
         //return (P.x >= min.x && P.x <= max.x) && (P.y >= min.y && P.y <= max.y) && (P.z >= min.z && P.z <= max.z);
         return (P.x >= min.x && P.x <= max.x) && (P.z >= min.z && P.z <= max.z);
+    }
+
+    public bool YourCards()
+    {
+        return yourCards;
+    }
+
+    public bool NoCardsLeft()
+    {
+        bool grabbedAll = true;
+        foreach (NetworkedDealCard card in cardHandlers)
+        {
+            if (!card.IsGrabbed() && !card.IsThrown())
+            {
+                grabbedAll = false;
+            }
+        }
+        return grabbedAll;
     }
 }
