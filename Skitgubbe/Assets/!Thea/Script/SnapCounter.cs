@@ -6,6 +6,7 @@ public class SnapCounter : MonoBehaviour
 {
     public List<GameObject> snapPoints; 
     private int currentSnapIndex = 3;
+   
 
     void Start()
     {
@@ -18,6 +19,11 @@ public class SnapCounter : MonoBehaviour
     void Update()
     {
         UpdateSnapPoints();
+
+        if (AreAllSnapPointsUnsnappped())
+        {
+            Debug.LogError("meow");
+        }
     }
 
     void UpdateSnapPoints()
@@ -52,4 +58,18 @@ public class SnapCounter : MonoBehaviour
 
         return -1; 
     }
+
+     public bool AreAllSnapPointsUnsnappped()
+     {
+        // Check if all snap points are unsnapped
+        foreach (GameObject snapPoint in snapPoints)
+        {
+            Snapped snappedScript = snapPoint.GetComponent<Snapped>();
+            if (snappedScript != null && snappedScript.isSnappedBool)
+            {
+                return false; // At least one is snapped, so return false
+            }
+        }
+        return true; // All are unsnapped, return true
+     }
 }
