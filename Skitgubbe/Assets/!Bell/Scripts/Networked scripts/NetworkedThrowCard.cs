@@ -28,6 +28,18 @@ public class NetworkedThrowCard : NetworkBehaviour
         }
     }
 
+    public void PickUpCards()
+    {
+        if (pickUpCards)
+        {
+            pickUpCards = false;
+        }
+        else if (!pickUpCards)
+        {
+            pickUpCards = true;
+        }
+    }
+
     public override void Render()
     {
         Debug.DrawRay(new Vector3(this.transform.position.x, this.transform.position.y + 0.2f, this.transform.position.z), Vector3.down, Color.red);
@@ -35,7 +47,7 @@ public class NetworkedThrowCard : NetworkBehaviour
 
     private void HandleCardLogic()
     {
-        //ShowLastCard();
+        ShowLastCard();
         CheckFor10();
         CheckLast4();
     }
@@ -50,12 +62,14 @@ public class NetworkedThrowCard : NetworkBehaviour
                 {
                     AddCardToPile(other.gameObject);
                     other.GetComponent<Card>().SetIsThrown(true);
+                    other.GetComponent<Card>().ToggleObjectActiveState(false);
                     first = true;
                 }
                 else if (other.GetComponent<Card>().GetCardNum() >= cards[cards.Count - 1].GetComponent<Card>().GetCardNum() || other.GetComponent<Card>().GetCardNum() == 2 || other.GetComponent<Card>().GetCardNum() == 10)
                 {
                     AddCardToPile(other.gameObject);
                     other.GetComponent<Card>().SetIsThrown(true);
+                    other.GetComponent<Card>().ToggleObjectActiveState(false);
                 }
             }
         }
@@ -63,22 +77,27 @@ public class NetworkedThrowCard : NetworkBehaviour
 
     private void HandleCardPickup()
     {
-        GameObject lastInactiveObject = FindLastInactive(cards);
-        RaycastHit hit;
-        if (Physics.Raycast(this.transform.position, Vector3.up, out hit, 1f))
+        //GameObject lastInactiveObject = FindLastInactive(cards);
+        //RaycastHit hit;
+        //if (Physics.Raycast(this.transform.position, Vector3.up, out hit, 1f))
+        //{
+        //    if (hit.collider.tag != "Card")
+        //    {
+        //        if (lastInactiveObject != null)
+        //        {
+        //            lastInactiveObject.SetActive(true);
+        //            hit.collider.GetComponent<Card>().SetIsThrown(false);
+        //        }
+        //        else
+        //        {
+        //            pickUpCards = false;
+        //        }
+        //    }
+        //}
+        foreach (var card in cards)
         {
-            if (hit.collider.tag != "Card")
-            {
-                if (lastInactiveObject != null)
-                {
-                    lastInactiveObject.SetActive(true);
-                    hit.collider.GetComponent<Card>().SetIsThrown(false);
-                }
-                else
-                {
-                    pickUpCards = false;
-                }
-            }
+            card.GetComponent<MeshRenderer>().enabled = true;
+            card.GetComponent<Card>().ToggleObjectActiveState(true);
         }
     }
 
@@ -134,9 +153,9 @@ public class NetworkedThrowCard : NetworkBehaviour
         {
             for (int i = 0; i < cards.Count; i++)
             {
-                cards[i].gameObject.SetActive(false);
+                cards[i].GetComponent<MeshRenderer>().enabled = false;
             }
-            cards[cards.Count - 1].SetActive(true);
+            cards[cards.Count - 1].GetComponent<MeshRenderer>().enabled = true;
         }
     }
 
