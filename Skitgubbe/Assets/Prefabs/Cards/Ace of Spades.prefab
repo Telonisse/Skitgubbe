@@ -323,6 +323,7 @@ MonoBehaviour:
   isDead: 0
   grabObject: {fileID: 7770981248436398183}
   _isGrabbed: 0
+  _isThrown: 0
 --- !u!114 &5954307542008126536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactableView: {fileID: 0}
+  _interactableView: {fileID: 5952361758436819516}
   _whenHover:
     m_PersistentCalls:
       m_Calls: []

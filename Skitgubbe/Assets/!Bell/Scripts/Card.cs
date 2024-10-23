@@ -58,4 +58,9 @@ public class Card : NetworkBehaviour
     {
         return isThrown;
     }
+
+    public void SetIsThrown(bool thrown)
+    {
+        isThrown = thrown;
+    }
 }
