@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 2408876162773348298}
   - component: {fileID: 2023502073143589107}
   - component: {fileID: 5666269140877273954}
+  - component: {fileID: -7099164187663127222}
   m_Layer: 0
   m_Name: Three of Diamonds
   m_TagString: Card
@@ -265,6 +266,56 @@ MonoBehaviour:
   cardNumber: 3
   isDead: 0
   grabObject: {fileID: 1473703211884703198}
+  _isGrabbed: 0
+--- !u!114 &-7099164187663127222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634679163857458486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactableView: {fileID: 856712803452721422}
+  _whenHover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenUnhover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5666269140877273954}
+        m_TargetAssemblyTypeName: Card, Assembly-CSharp
+        m_MethodName: GrabCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1473703211884703198
 GameObject:
   m_ObjectHideFlags: 0
