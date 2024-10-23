@@ -10,6 +10,7 @@ public class Card : NetworkBehaviour
 
     [SerializeField] GameObject grabObject;
     [Networked] public bool isGrabbed { get; set; } = false;
+    [Networked] public bool isThrown { get; set; } = false;
 
     public void ToggleObjectActiveState(bool isActive)
     {
@@ -52,5 +53,9 @@ public class Card : NetworkBehaviour
     public bool IsGrabbed()
     {
         return isGrabbed;
+    }
+    public bool IsThrown()
+    {
+        return isThrown;
     }
 }
