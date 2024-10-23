@@ -6,6 +6,8 @@ public class SnapCounter : MonoBehaviour
 {
     public List<GameObject> snapPoints; 
     private int currentSnapIndex = 3;
+
+    bool lastCardThrown = false;
    
 
     void Start()
@@ -44,7 +46,14 @@ public class SnapCounter : MonoBehaviour
         if (other.CompareTag("Card") && IsOnlyOneSnapped())
         {
             Debug.LogError("only one snapped and Card is in hand");
+            lastCardThrown = other.GetComponent<Card>().IsThrown();
         }
+
+    }
+
+    public bool LastCardThrow()
+    {
+        return lastCardThrown;
     }
 
     int GetLastSnappedIndex()
@@ -85,12 +94,12 @@ public class SnapCounter : MonoBehaviour
                 snappedCount++;
             }
 
-            if (snappedCount > 1)  // Early exit if more than 1 is snapped
+            if (snappedCount > 1)  
             {
                 return false;
             }
         }
 
-        return snappedCount == 1;  // True only if exactly one is snapped
+        return snappedCount == 1;  
     }
 }
