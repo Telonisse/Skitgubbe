@@ -8,6 +8,7 @@ public class NetworkedThrowCard : NetworkBehaviour
 {
     [SerializeField] List<GameObject> cards;
     [SerializeField] GameObject killPile;
+    [SerializeField] GameObject pickUpText;
     [Networked] public bool first { get; set; } = false;
     [Networked] public bool pickUpCards { get; set; } = false;
 
@@ -30,6 +31,12 @@ public class NetworkedThrowCard : NetworkBehaviour
 
     public void PickUpCards()
     {
+        RPC_PickUpCards();
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    private void RPC_PickUpCards()
+    {
         if (pickUpCards)
         {
             pickUpCards = false;
@@ -47,29 +54,33 @@ public class NetworkedThrowCard : NetworkBehaviour
 
     private void HandleCardLogic()
     {
-        //ShowLastCard();
+        ShowLastCard();
         CheckFor10();
         CheckLast4();
+        PickUpCardText();
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Card" && IsCardInPile(other.gameObject) == false)
+        if (!pickUpCards)
         {
-            Card cardscript = other.GetComponent<Card>();
-            if (cardscript != null)
+            if (other.tag == "Card" && IsCardInPile(other.gameObject) == false)
             {
-                if (!first)
+                Card cardscript = other.GetComponent<Card>();
+                if (cardscript != null)
                 {
-                    AddCardToPile(other.gameObject);
-                    other.GetComponent<Card>().SetIsThrown(true);
-                    //other.GetComponent<Card>().ToggleObjectActiveState(false);
-                    first = true;
-                }
-                else if (other.GetComponent<Card>().GetCardNum() >= cards[cards.Count - 1].GetComponent<Card>().GetCardNum() || other.GetComponent<Card>().GetCardNum() == 2 || other.GetComponent<Card>().GetCardNum() == 10)
-                {
-                    AddCardToPile(other.gameObject);
-                    other.GetComponent<Card>().SetIsThrown(true);
-                    //other.GetComponent<Card>().ToggleObjectActiveState(false);
+                    if (!first)
+                    {
+                        AddCardToPile(other.gameObject);
+                        other.GetComponent<Card>().SetIsThrown(true);
+                        other.GetComponent<Card>().ToggleObjectActiveState(false);
+                        first = true;
+                    }
+                    else if (other.GetComponent<Card>().GetCardNum() >= cards[cards.Count - 1].GetComponent<Card>().GetCardNum() || other.GetComponent<Card>().GetCardNum() == 2 || other.GetComponent<Card>().GetCardNum() == 10)
+                    {
+                        AddCardToPile(other.gameObject);
+                        other.GetComponent<Card>().SetIsThrown(true);
+                        other.GetComponent<Card>().ToggleObjectActiveState(false);
+                    }
                 }
             }
         }
@@ -79,7 +90,7 @@ public class NetworkedThrowCard : NetworkBehaviour
         RPC_HandleCardPickup();
     }
 
-    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    [Rpc(RpcSources.All, RpcTargets.All)]
     private void RPC_HandleCardPickup()
     {
         foreach (var card in cards)
@@ -88,6 +99,7 @@ public class NetworkedThrowCard : NetworkBehaviour
             card.GetComponent<Card>().ToggleObjectActiveState(true);
             card.GetComponent<Card>().SetIsThrown(false);
         }
+        first = false;
         cards.Clear();
     }
 
@@ -149,11 +161,7 @@ public class NetworkedThrowCard : NetworkBehaviour
         {
             for (int i = 0; i < cards.Count; i++)
             {
-                if (!pickUpCards)
-                {
-                    cards[i].GetComponent<MeshRenderer>().enabled = false;
-                    cards[i].GetComponent<Card>().ToggleObjectActiveState(false);
-                }
+                cards[i].GetComponent<MeshRenderer>().enabled = false;
             }
             cards[cards.Count - 1].GetComponent<MeshRenderer>().enabled = true;
         }
@@ -194,10 +202,19 @@ public class NetworkedThrowCard : NetworkBehaviour
         foreach (var card in cards)
         {
             card.GetComponent<Card>().KillCard();
+            card.GetComponent<MeshRenderer>().enabled = true;
             card.transform.position = killPile.transform.position;
             card.SetActive(true);
         }
         cards.Clear();
         first = false;
+    }
+
+    public void PickUpCardText()
+    {
+        if (!FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards())
+        {
+            pickUpText.SetActive(FindObjectOfType<SnapCounter>().LessThenThreeSnapped());
+        }
     }
 }
