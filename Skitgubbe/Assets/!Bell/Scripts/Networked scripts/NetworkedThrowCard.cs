@@ -73,6 +73,8 @@ public class NetworkedThrowCard : NetworkBehaviour
                         AddCardToPile(other.gameObject);
                         other.GetComponent<Card>().SetIsThrown(true);
                         other.GetComponent<Card>().ToggleObjectActiveState(false);
+                        other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                        other.transform.position = this.transform.position;
                         first = true;
                     }
                     else if (other.GetComponent<Card>().GetCardNum() >= cards[cards.Count - 1].GetComponent<Card>().GetCardNum() || other.GetComponent<Card>().GetCardNum() == 2 || other.GetComponent<Card>().GetCardNum() == 10)
@@ -80,6 +82,8 @@ public class NetworkedThrowCard : NetworkBehaviour
                         AddCardToPile(other.gameObject);
                         other.GetComponent<Card>().SetIsThrown(true);
                         other.GetComponent<Card>().ToggleObjectActiveState(false);
+                        other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                        other.transform.position = this.transform.position;
                     }
                 }
             }
@@ -95,9 +99,11 @@ public class NetworkedThrowCard : NetworkBehaviour
     {
         foreach (var card in cards)
         {
+            card.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.1f, this.transform.position.z);
             card.GetComponent<MeshRenderer>().enabled = true;
             card.GetComponent<Card>().ToggleObjectActiveState(true);
             card.GetComponent<Card>().SetIsThrown(false);
+            card.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         }
         first = false;
         cards.Clear();

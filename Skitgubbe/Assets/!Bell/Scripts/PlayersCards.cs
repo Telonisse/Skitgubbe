@@ -64,7 +64,6 @@ public class PlayersCards : MonoBehaviour
                 }
             }
         }
-
     }
 
     bool AllCardsGrabbed()
