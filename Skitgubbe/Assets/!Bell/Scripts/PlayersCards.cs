@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ public class PlayersCards : MonoBehaviour
     [SerializeField] bool yourCards;
 
     [SerializeField] NetworkedDealCard[] cardHandlers;
+
+    [SerializeField] TextMeshPro currentIndex;
     private void Start()
     {
         ovrm = FindAnyObjectByType<OVRManager>();
@@ -37,6 +40,10 @@ public class PlayersCards : MonoBehaviour
         {
             Debug.Log(NoCardsLeft());
         }
+        if (currentIndex != null)
+        {
+            currentIndex.text = yourCards.ToString();
+        }
     }
 
     private void IsYourCards()
@@ -48,7 +55,7 @@ public class PlayersCards : MonoBehaviour
                 if (!card.IsDown())
                 {
                     Debug.Log("Upper cards turned on");
-                    card.TurnOnCards();
+                    card.RPC_TurnOnCards();
                     Debug.Log(card.IsGrabbed());
                 }
             }

@@ -8359,6 +8359,7 @@ MonoBehaviour:
   ovrm: {fileID: 0}
   yourCards: 0
   cardHandlers: []
+  currentIndex: {fileID: 0}
 --- !u!4 &360686499
 Transform:
   m_ObjectHideFlags: 0
@@ -8435,12 +8436,13 @@ MonoBehaviour:
   ovrm: {fileID: 0}
   yourCards: 0
   cardHandlers:
-  - {fileID: 253033218}
   - {fileID: 1205621687}
-  - {fileID: 270211473}
   - {fileID: 297063877}
-  - {fileID: 1726389477}
+  - {fileID: 253033218}
   - {fileID: 1237760359}
+  - {fileID: 270211473}
+  - {fileID: 1726389477}
+  currentIndex: {fileID: 11096237}
 --- !u!114 &361307912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27345,7 +27347,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpText: {fileID: 1737797682}
-  currentIndex: {fileID: 11096237}
 --- !u!1 &1162397464
 GameObject:
   m_ObjectHideFlags: 0
@@ -28410,6 +28411,7 @@ MonoBehaviour:
   - {fileID: 842310027}
   - {fileID: 124275797}
   - {fileID: 1225103334}
+  currentIndex: {fileID: 0}
 --- !u!114 &1191035613
 MonoBehaviour:
   m_ObjectHideFlags: 0

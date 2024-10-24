@@ -44,8 +44,14 @@ public class NetworkedDealCard : NetworkBehaviour
 
     public void TurnOnCards()
     {
-        card.GetComponent<Card>().ToggleObjectActiveState(true);
+        RPC_TurnOnCards();
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_TurnOnCards()
+    {
         card.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        card.GetComponent<Card>().ToggleObjectActiveState(true);
     }
 
     public bool IsDown()
