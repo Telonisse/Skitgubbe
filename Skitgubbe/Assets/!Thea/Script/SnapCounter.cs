@@ -109,7 +109,7 @@ public class SnapCounter : MonoBehaviour
         return snappedCount == 1;  
     }
 
-    public bool IsThreeSnapped()
+    public bool ThreeSnapped()
     {
         int snappedCountFor3 = 0;
         foreach (GameObject snapPoint in snapPoints)
