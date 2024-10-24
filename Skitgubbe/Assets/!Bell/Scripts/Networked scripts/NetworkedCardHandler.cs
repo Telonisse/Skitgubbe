@@ -122,4 +122,9 @@ public class NetworkedCardHandler : NetworkBehaviour
             return false;
         }
     }
+
+    public int CurrentIndex()
+    {
+        return currentCardIndex;
+    }
 }

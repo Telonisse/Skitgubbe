@@ -8,7 +8,6 @@ public class NetworkedThrowCard : NetworkBehaviour
 {
     [SerializeField] List<GameObject> cards;
     [SerializeField] GameObject killPile;
-    [SerializeField] GameObject pickUpText;
     [Networked] public bool first { get; set; } = false;
     [Networked] public bool pickUpCards { get; set; } = false;
 
@@ -57,7 +56,6 @@ public class NetworkedThrowCard : NetworkBehaviour
         ShowLastCard();
         CheckFor10();
         CheckLast4();
-        PickUpCardText();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -214,13 +212,5 @@ public class NetworkedThrowCard : NetworkBehaviour
         }
         cards.Clear();
         first = false;
-    }
-
-    public void PickUpCardText()
-    {
-        if (!FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards())
-        {
-            pickUpText.SetActive(FindObjectOfType<SnapCounter>().LessThenThreeSnapped());
-        }
     }
 }
