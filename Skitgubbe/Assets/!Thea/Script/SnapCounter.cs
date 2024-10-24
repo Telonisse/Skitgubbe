@@ -109,23 +109,25 @@ public class SnapCounter : MonoBehaviour
         return snappedCount == 1;  
     }
 
-    public bool ThreeSnapped()
+    public bool LessThenThreeSnapped()
     {
-        int snappedCountFor3 = 0;
+        int snappedCounterLessThanThree = 0;
         foreach (GameObject snapPoint in snapPoints)
         {
             Snapped snappedScript = snapPoint.GetComponent<Snapped>();
             if (snappedScript != null && snappedScript.isSnappedBool)
             {
-                snappedCountFor3++;
+                snappedCounterLessThanThree++;
             }
 
-            if (snappedCountFor3 > 3)
+           
+            if (snappedCounterLessThanThree >= 3)
             {
                 return false;
             }
         }
 
-        return snappedCountFor3 == 3;
+        
+        return snappedCounterLessThanThree < 3;
     }
 }
