@@ -50,26 +50,36 @@ public class PlayersCards : MonoBehaviour
     {
         if (yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards() && AllCardsGrabbed() == false && FindObjectOfType<SnapCounter>().AreAllSnapPointsUnsnappped() == true)
         {
-            foreach (NetworkedDealCard card in cardHandlers)
-            {
-                if (!card.IsDown())
-                {
-                    Debug.Log("Upper cards turned on");
-                    card.RPC_TurnOnCards();
-                    Debug.Log(card.IsGrabbed());
-                }
-            }
+            StartCoroutine(TurnOnCardDelay1());
         }
         if (yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards() && AllCardsGrabbed() == true && FindObjectOfType<SnapCounter>().AreAllSnapPointsUnsnappped() == true)
         {
-            foreach (NetworkedDealCard card in cardHandlers)
+            StartCoroutine(TurnOnCardDelay2());
+        }
+    }
+
+    IEnumerator TurnOnCardDelay1()
+    {
+        foreach (NetworkedDealCard card in cardHandlers)
+        {
+            if (!card.IsDown())
             {
-                if (card.IsDown())
-                {
-                    Debug.Log("Lower cards turned on");
-                    card.TurnOnCards();
-                }
+                Debug.Log("Upper cards turned on");
+                card.RPC_TurnOnCards();
             }
+            yield return new WaitForSeconds(1);
+        }
+    }
+    IEnumerator TurnOnCardDelay2()
+    {
+        foreach (NetworkedDealCard card in cardHandlers)
+        {
+            if (card.IsDown())
+            {
+                Debug.Log("Lower cards turned on");
+                card.RPC_TurnOnCards();
+            }
+            yield return new WaitForSeconds(1);
         }
     }
 

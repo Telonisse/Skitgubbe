@@ -10,7 +10,6 @@ public class Tester : NetworkBehaviour
 
     private void Update()
     {
-        Debug.Log("snapcounter = " + FindObjectOfType<SnapCounter>().LastCardThrow());
         if (GetComponent<PlayersCards>().YourCards() == true && GetComponent<PlayersCards>().NoCardsLeft() == true && FindObjectOfType<SnapCounter>().AreAllSnapPointsUnsnappped() == true && FindObjectOfType<SnapCounter>().LastCardThrow() == true)
         {
             ToggleObjectActiveState(true);
