@@ -82,4 +82,16 @@ public class NetworkedDealCard : NetworkBehaviour
             return false;
         }
     }
+
+    public bool IsGrabOn()
+    {
+        if (card != null)
+        {
+            return card.GetComponent<Card>().GrabbableOn();
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

@@ -18,6 +18,8 @@ public class PlayersCards : MonoBehaviour
     [SerializeField] NetworkedDealCard[] cardHandlers;
 
     [SerializeField] TextMeshPro currentIndex;
+
+    private bool turningOn;
     private void Start()
     {
         ovrm = FindAnyObjectByType<OVRManager>();
@@ -42,13 +44,13 @@ public class PlayersCards : MonoBehaviour
         }
         if (currentIndex != null)
         {
-            currentIndex.text = yourCards.ToString();
+            currentIndex.text = CardsOn().ToString();
         }
     }
 
     private void IsYourCards()
     {
-        if (yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards() && AllCardsGrabbed() == false && FindObjectOfType<SnapCounter>().AreAllSnapPointsUnsnappped() == true)
+        if (turningOn == false &&yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards() && AllCardsGrabbed() == false && FindObjectOfType<SnapCounter>().AreAllSnapPointsUnsnappped() == true)
         {
             StartCoroutine(TurnOnCardDelay1());
         }
@@ -60,6 +62,7 @@ public class PlayersCards : MonoBehaviour
 
     IEnumerator TurnOnCardDelay1()
     {
+        turningOn = true;   
         foreach (NetworkedDealCard card in cardHandlers)
         {
             if (!card.IsDown())
@@ -69,6 +72,7 @@ public class PlayersCards : MonoBehaviour
             }
             yield return new WaitForSeconds(1);
         }
+        turningOn = false;
     }
     IEnumerator TurnOnCardDelay2()
     {
@@ -94,6 +98,19 @@ public class PlayersCards : MonoBehaviour
             }
         }
         return grabbedAll;
+    }
+
+    int CardsOn()
+    {
+        int cardCount = 0;
+        foreach(NetworkedDealCard card in cardHandlers)
+        {
+            if (!card.IsDown() && card.IsGrabbed())
+            {
+                cardCount++;
+            }
+        }
+        return cardCount;
     }
 
     bool IsPointInBox(Vector3 P, Vector3 corner1, Vector3 corner2)

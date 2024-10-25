@@ -42,7 +42,7 @@ public class Card : NetworkBehaviour
     }
     public void GrabCard()
     {
-        if (HasStateAuthority)  // Only the server (authority) updates this
+        if (true)  // Only the server (authority) updates this
         {
             isGrabbed = true;  // Set the networked grab state to true
             Debug.Log("Card grabbed.");
@@ -62,5 +62,10 @@ public class Card : NetworkBehaviour
     public void SetIsThrown(bool thrown)
     {
         isThrown = thrown;
+    }
+
+    public bool GrabbableOn()
+    {
+        return grabObject.activeSelf;
     }
 }
