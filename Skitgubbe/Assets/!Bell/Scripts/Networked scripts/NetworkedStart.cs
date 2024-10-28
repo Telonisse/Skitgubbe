@@ -14,25 +14,28 @@ public class NetworkedStart : NetworkBehaviour
     }
 
     // The RPC that is called to synchronize the object state across clients
-    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    [Rpc(RpcSources.All, RpcTargets.All)]
     private void RPC_ToggleObjectState(bool isActive)
     {
-        if (findSpawnPos == null || findSpawnPos.GetTablePositions().Count == 0) return;
-
-        // Get the first table position
-        Vector3 firstTablePosition = findSpawnPos.GetTablePositions()[0];
-
-        // Check if there is at least one object in the setActiveObjects array
-        if (setActiveObjects.Length > 0)
+        if (HasStateAuthority)
         {
-            // Move the first object to the first table position
-            GameObject firstObject = setActiveObjects[0];
-            firstObject.transform.position = firstTablePosition;
-        }
+            if (findSpawnPos == null || findSpawnPos.GetTablePositions().Count == 0) return;
 
-        foreach (var obj in setActiveObjects)
-        {
-            obj.SetActive(isActive);
+            // Get the first table position
+            Vector3 firstTablePosition = findSpawnPos.GetTablePositions()[0];
+
+            // Check if there is at least one object in the setActiveObjects array
+            if (setActiveObjects.Length > 0)
+            {
+                // Move the first object to the first table position
+                GameObject firstObject = setActiveObjects[0];
+                firstObject.transform.position = firstTablePosition;
+            }
+
+            foreach (var obj in setActiveObjects)
+            {
+                obj.SetActive(isActive);
+            }
         }
     }
 }

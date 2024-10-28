@@ -40183,7 +40183,19 @@ MonoBehaviour:
         m_CallState: 2
   _onAnchorsLoadCompleted:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 977728566}
+        m_TargetAssemblyTypeName: FindSpawnPos, Assembly-CSharp
+        m_MethodName: FindSpawnPosOnSurface
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onAnchorsEraseAllCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -49447,19 +49459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <SceneLoadedEvent>k__BackingField:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 977728566}
-        m_TargetAssemblyTypeName: FindSpawnPos, Assembly-CSharp
-        m_MethodName: FindSpawnPosOnSurface
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   <RoomCreatedEvent>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
@@ -52009,6 +52009,8 @@ GameObject:
   - component: {fileID: 5044731153903820610}
   - component: {fileID: 7054478734775577481}
   - component: {fileID: 7054478734775577482}
+  - component: {fileID: 7054478734775577484}
+  - component: {fileID: 7054478734775577483}
   m_Layer: 0
   m_Name: PlayBoard
   m_TagString: Untagged
@@ -52072,6 +52074,57 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 0.012346376, z: 0.5}
   m_Center: {x: 0, y: -0.0046731886, z: 0}
+--- !u!114 &7054478734775577483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6702060146264587927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 854242999
+  ObjectInterest: 1
+  Flags: 524289
+  NestedObjects:
+  - {fileID: 1191035613}
+  - {fileID: 1761340269}
+  - {fileID: 1591141405}
+  - {fileID: 1122628049}
+  - {fileID: 842310026}
+  - {fileID: 124275796}
+  - {fileID: 1225103333}
+  - {fileID: 361307912}
+  - {fileID: 1237760358}
+  - {fileID: 270211472}
+  - {fileID: 1726389476}
+  - {fileID: 1205621686}
+  - {fileID: 297063876}
+  - {fileID: 253033217}
+  - {fileID: 179373491}
+  - {fileID: 1499589564}
+  - {fileID: 219773458}
+  NetworkedBehaviours:
+  - {fileID: 7054478734775577484}
+--- !u!114 &7054478734775577484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6702060146264587927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
