@@ -48,7 +48,7 @@ public class NetworkedDealCard : NetworkBehaviour
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
-    public void RPC_TurnOnCards()
+    private void RPC_TurnOnCards()
     {
         card.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         card.GetComponent<Card>().ToggleObjectActiveState(true);
