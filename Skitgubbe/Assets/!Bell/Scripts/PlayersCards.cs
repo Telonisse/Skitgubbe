@@ -1,9 +1,10 @@
+using Fusion;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayersCards : MonoBehaviour
+public class PlayersCards : NetworkBehaviour
 {
     [SerializeField] GameObject corner1;
     [SerializeField] GameObject corner2;
@@ -17,6 +18,9 @@ public class PlayersCards : MonoBehaviour
     [SerializeField] NetworkedDealCard[] cardHandlers;
 
     [SerializeField] TextMeshPro currentIndex;
+
+    [Networked] bool secondPlayerReadyUpper {  get; set; }
+    [Networked] bool secondPlayerReadyLower {  get; set; }
 
     private bool turningOn;
     private void Start()
@@ -41,93 +45,104 @@ public class PlayersCards : MonoBehaviour
         {
             Debug.Log(NoCardsLeft());
         }
+        if (HasStateAuthority && secondPlayerReadyUpper)
+        {
+            TurnOnCardsForSecondPlayerUpper();
+        }
+        if (HasStateAuthority && secondPlayerReadyLower)
+        {
+            TurnOnCardsForSecondPlayerLower();
+        }
+    }
 
+    private void TurnOnCardsForSecondPlayerUpper()
+    {
+        if (!turningOn)
+        {
+            StartCoroutine(TurnOnCardDelay1());
+        }
+    }
+    private void TurnOnCardsForSecondPlayerLower()
+    {
+        if (!turningOn)
+        {
+            StartCoroutine(TurnOnCardDelay2());
+        }
     }
 
     private void IsYourCards()
     {
-        if (turningOn == false &&yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards() && AllCardsGrabbed() == false && FindObjectOfType<SnapCounter>().AreAllSnapPointsUnsnappped() == true)
+        if (yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards() && AllCardsGrabbed() == false && FindObjectOfType<SnapCounter>().AreAllSnapPointsUnsnappped() == true)
         {
-            StartCoroutine(TurnOnCardDelay1());
+            if (!HasInputAuthority && !HasStateAuthority)
+            {
+                RPC_RequestUpper();
+            }
+            else if (HasStateAuthority)
+            {
+                StartCoroutine(TurnOnCardDelay1());
+                secondPlayerReadyUpper = false;
+            }
+            else
+            {
+                secondPlayerReadyUpper = false;
+            }
         }
         if (yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards() && AllCardsGrabbed() == true && FindObjectOfType<SnapCounter>().AreAllSnapPointsUnsnappped() == true)
         {
-            StartCoroutine(TurnOnCardDelay2());
+            if (!HasInputAuthority && !HasStateAuthority)
+            {
+                RPC_RequestLower();
+            }
+            else if (HasStateAuthority)
+            {
+                StartCoroutine(TurnOnCardDelay2());
+                secondPlayerReadyLower = false;
+            }
+            else
+            {
+                secondPlayerReadyLower = false;
+            }
+        }
+
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    private void RPC_RequestUpper()
+    {
+        if (HasStateAuthority)
+        {
+            secondPlayerReadyUpper = true;
+            Debug.Log("Player requested and allowed");
+        }
+    }
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    private void RPC_RequestLower()
+    {
+        if (HasStateAuthority)
+        {
+            secondPlayerReadyLower = true;
+            Debug.Log("Player requested and allowed");
         }
     }
 
     IEnumerator TurnOnCardDelay1()
     {
         turningOn = true;
-        if (cardHandlers[0] == null)
+        foreach (NetworkedDealCard card in cardHandlers)
         {
-            currentIndex.text += "No 1 card";
+            if (!card.IsDown())
+            {
+                Debug.Log("Upper cards turned on");
+                card.TurnOnCards();
+            }
+            yield return new WaitForSeconds(1);
         }
-        if (cardHandlers[1] == null)
-        {
-            currentIndex.text += "No 2 card";
-        }
-        if (cardHandlers[2] == null)
-        {
-            currentIndex.text += "No 3 card";
-        }
-        if (cardHandlers[3] == null)
-        {
-            currentIndex.text += "No 4 card";
-        }
-        if (cardHandlers[4] == null)
-        {
-            currentIndex.text += "No 5 card";
-        }
-        if (cardHandlers[5] == null)
-        {
-            currentIndex.text += "No 6 card";
-        }
-        if (cardHandlers[0].IsDown() == false)
-        {
-            currentIndex.text += "First card turned on";
-            cardHandlers[0].TurnOnCards();
-        }
-        if (cardHandlers[1].IsDown() == false)
-        {
-            currentIndex.text += "Second card turned on";
-            cardHandlers[1].TurnOnCards();
-        }
-        if (cardHandlers[2].IsDown() == false)
-        {
-            currentIndex.text += "Third card turned on";
-            cardHandlers[2].TurnOnCards();
-        }
-        if (cardHandlers[3].IsDown() == false)
-        {
-            currentIndex.text += "Fourth card turned on";
-            cardHandlers[3].TurnOnCards();
-        }
-        if (cardHandlers[4].IsDown() == false)
-        {
-            currentIndex.text += "Fifth card turned on";
-            cardHandlers[4].TurnOnCards();
-        }
-        if (cardHandlers[5].IsDown() == false)
-        {
-            currentIndex.text += "Sixth card turned on";
-            cardHandlers[5].TurnOnCards();
-        }
-
-        //foreach (NetworkedDealCard card in cardHandlers)
-        //{
-        //    if (!card.IsDown())
-        //    {
-        //        Debug.Log("Upper cards turned on");
-        //        card.RPC_TurnOnCards();
-        //    }
-        //    yield return new WaitForSeconds(1);
-        //}
-        yield return new WaitForSeconds(1);
         turningOn = false;
     }
     IEnumerator TurnOnCardDelay2()
     {
+        turningOn = true;
         foreach (NetworkedDealCard card in cardHandlers)
         {
             if (card.IsDown())
@@ -137,6 +152,7 @@ public class PlayersCards : MonoBehaviour
             }
             yield return new WaitForSeconds(1);
         }
+        turningOn = false;
     }
 
     bool AllCardsGrabbed()
