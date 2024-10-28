@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayersCards : MonoBehaviour
@@ -42,10 +41,7 @@ public class PlayersCards : MonoBehaviour
         {
             Debug.Log(NoCardsLeft());
         }
-        if (currentIndex != null)
-        {
-            currentIndex.text = CardsOn().ToString();
-        }
+
     }
 
     private void IsYourCards()
@@ -62,16 +58,48 @@ public class PlayersCards : MonoBehaviour
 
     IEnumerator TurnOnCardDelay1()
     {
-        turningOn = true;   
-        foreach (NetworkedDealCard card in cardHandlers)
+        turningOn = true;
+        if (cardHandlers[0].IsDown() == false)
         {
-            if (!card.IsDown())
-            {
-                Debug.Log("Upper cards turned on");
-                card.RPC_TurnOnCards();
-            }
-            yield return new WaitForSeconds(1);
+            currentIndex.text = "First card turned on";
+            cardHandlers[0].TurnOnCards();
         }
+        if (cardHandlers[1].IsDown() == false)
+        {
+            currentIndex.text += "Second card turned on";
+            cardHandlers[1].TurnOnCards();
+        }
+        if (cardHandlers[2].IsDown() == false)
+        {
+            currentIndex.text = "Third card turned on";
+            cardHandlers[2].TurnOnCards();
+        }
+        if (cardHandlers[3].IsDown() == false)
+        {
+            currentIndex.text = "Fourth card turned on";
+            cardHandlers[3].TurnOnCards();
+        }
+        if (cardHandlers[4].IsDown() == false)
+        {
+            currentIndex.text = "Fifth card turned on";
+            cardHandlers[4].TurnOnCards();
+        }
+        if (cardHandlers[5].IsDown() == false)
+        {
+            currentIndex.text = "Sixth card turned on";
+            cardHandlers[5].TurnOnCards();
+        }
+
+        //foreach (NetworkedDealCard card in cardHandlers)
+        //{
+        //    if (!card.IsDown())
+        //    {
+        //        Debug.Log("Upper cards turned on");
+        //        card.RPC_TurnOnCards();
+        //    }
+        //    yield return new WaitForSeconds(1);
+        //}
+        yield return new WaitForSeconds(1);
         turningOn = false;
     }
     IEnumerator TurnOnCardDelay2()
@@ -81,7 +109,7 @@ public class PlayersCards : MonoBehaviour
             if (card.IsDown())
             {
                 Debug.Log("Lower cards turned on");
-                card.RPC_TurnOnCards();
+                card.TurnOnCards();
             }
             yield return new WaitForSeconds(1);
         }
