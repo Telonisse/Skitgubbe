@@ -8,14 +8,13 @@ public class NetworkedStart : NetworkBehaviour
     [SerializeField] GameObject[] setActiveObjects;
     public FindSpawnPos findSpawnPos;
 
-
     public void StartAll()
     {
         RPC_ToggleObjectState(true);
     }
 
     // The RPC that is called to synchronize the object state across clients
-    [Rpc(RpcSources.All, RpcTargets.All)]
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
     private void RPC_ToggleObjectState(bool isActive)
     {
         if (findSpawnPos == null || findSpawnPos.GetTablePositions().Count == 0) return;

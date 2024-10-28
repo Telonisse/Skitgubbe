@@ -5,6 +5,8 @@ using Fusion;
 using Fusion.Sockets;
 using Meta.XR.MRUtilityKit;
 using static Meta.XR.MRUtilityKit.MRUKAnchor;
+using Meta.XR.BuildingBlocks;
+
 
 
 public class FindSpawnPos : MonoBehaviour
@@ -18,20 +20,28 @@ public class FindSpawnPos : MonoBehaviour
 
     public void FindSpawnPosOnSurface()
     {
-        // Find all objects with MRUKAnchor in the scene
-        MRUKAnchor[] anchors = FindObjectsOfType<MRUKAnchor>();
+        //OVRSpatialAnchor[] anchors = FindObjectsOfType<OVRSpatialAnchor>();
 
-        foreach (MRUKAnchor anchor in anchors)
-        {
-            if (anchor.HasAnyLabel(SceneLabels.TABLE))
-            {
-                tablePositions.Add(anchor.transform.position);
-            }
-            else
-            {
-                Debug.Log("These are not tables!");
-            }
-        }
+        MRUKRoom room = MRUK.Instance.GetCurrentRoom();
+        MRUKAnchor a = room.FindLargestSurface(SceneLabels.TABLE);
+
+        tablePositions.Add(a.gameObject.transform.position);
+
+
+      
+        //MRUKAnchor[] anchors = FindObjectsOfType<MRUKAnchor>();
+
+        //foreach (MRUKAnchor anchor in anchors)
+        //{
+        //    if (anchor.HasAnyLabel(SceneLabels.TABLE))
+        //    {
+        //        tablePositions.Add(anchor.transform.position);
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("These are not tables!");
+        //    }
+        //}
     }
 
     //private void Start()
