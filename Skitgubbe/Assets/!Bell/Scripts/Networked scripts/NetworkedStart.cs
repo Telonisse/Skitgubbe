@@ -6,6 +6,8 @@ using UnityEngine;
 public class NetworkedStart : NetworkBehaviour
 {
     [SerializeField] GameObject[] setActiveObjects;
+    public FindSpawnPos findSpawnPos;
+
 
     public void StartAll()
     {
@@ -16,6 +18,19 @@ public class NetworkedStart : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.All)]
     private void RPC_ToggleObjectState(bool isActive)
     {
+        if (findSpawnPos == null || findSpawnPos.GetTablePositions().Count == 0) return;
+
+        // Get the first table position
+        Vector3 firstTablePosition = findSpawnPos.GetTablePositions()[0];
+
+        // Check if there is at least one object in the setActiveObjects array
+        if (setActiveObjects.Length > 0)
+        {
+            // Move the first object to the first table position
+            GameObject firstObject = setActiveObjects[0];
+            firstObject.transform.position = firstTablePosition;
+        }
+
         foreach (var obj in setActiveObjects)
         {
             obj.SetActive(isActive);
