@@ -59,9 +59,33 @@ public class PlayersCards : MonoBehaviour
     IEnumerator TurnOnCardDelay1()
     {
         turningOn = true;
+        if (cardHandlers[0] == null)
+        {
+            currentIndex.text += "No 1 card";
+        }
+        if (cardHandlers[1] == null)
+        {
+            currentIndex.text += "No 2 card";
+        }
+        if (cardHandlers[2] == null)
+        {
+            currentIndex.text += "No 3 card";
+        }
+        if (cardHandlers[3] == null)
+        {
+            currentIndex.text += "No 4 card";
+        }
+        if (cardHandlers[4] == null)
+        {
+            currentIndex.text += "No 5 card";
+        }
+        if (cardHandlers[5] == null)
+        {
+            currentIndex.text += "No 6 card";
+        }
         if (cardHandlers[0].IsDown() == false)
         {
-            currentIndex.text = "First card turned on";
+            currentIndex.text += "First card turned on";
             cardHandlers[0].TurnOnCards();
         }
         if (cardHandlers[1].IsDown() == false)
@@ -71,22 +95,22 @@ public class PlayersCards : MonoBehaviour
         }
         if (cardHandlers[2].IsDown() == false)
         {
-            currentIndex.text = "Third card turned on";
+            currentIndex.text += "Third card turned on";
             cardHandlers[2].TurnOnCards();
         }
         if (cardHandlers[3].IsDown() == false)
         {
-            currentIndex.text = "Fourth card turned on";
+            currentIndex.text += "Fourth card turned on";
             cardHandlers[3].TurnOnCards();
         }
         if (cardHandlers[4].IsDown() == false)
         {
-            currentIndex.text = "Fifth card turned on";
+            currentIndex.text += "Fifth card turned on";
             cardHandlers[4].TurnOnCards();
         }
         if (cardHandlers[5].IsDown() == false)
         {
-            currentIndex.text = "Sixth card turned on";
+            currentIndex.text += "Sixth card turned on";
             cardHandlers[5].TurnOnCards();
         }
 
