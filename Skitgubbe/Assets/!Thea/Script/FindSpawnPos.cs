@@ -22,26 +22,25 @@ public class FindSpawnPos : MonoBehaviour
     {
         //OVRSpatialAnchor[] anchors = FindObjectsOfType<OVRSpatialAnchor>();
 
-        MRUKRoom room = MRUK.Instance.GetCurrentRoom();
-        MRUKAnchor a = room.FindLargestSurface(SceneLabels.TABLE);
+        //MRUKRoom room = MRUK.Instance.GetCurrentRoom();
+        //MRUKAnchor a = room.FindLargestSurface(SceneLabels.TABLE);
 
-        tablePositions.Add(a.gameObject.transform.position);
+        //tablePositions.Add(a.gameObject.transform.position);
 
 
-      
-        //MRUKAnchor[] anchors = FindObjectsOfType<MRUKAnchor>();
+        MRUKAnchor[] anchors = FindObjectsOfType<MRUKAnchor>();
 
-        //foreach (MRUKAnchor anchor in anchors)
-        //{
-        //    if (anchor.HasAnyLabel(SceneLabels.TABLE))
-        //    {
-        //        tablePositions.Add(anchor.transform.position);
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("These are not tables!");
-        //    }
-        //}
+        foreach (MRUKAnchor anchor in anchors)
+        {
+            if (anchor.HasAnyLabel(SceneLabels.TABLE))
+            {
+                tablePositions.Add(anchor.transform.position);
+            }
+            else
+            {
+                Debug.Log("These are not tables!");
+            }
+        }
     }
 
     //private void Start()
