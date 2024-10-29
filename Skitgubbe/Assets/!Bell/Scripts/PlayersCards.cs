@@ -22,6 +22,8 @@ public class PlayersCards : NetworkBehaviour
     [Networked] bool secondPlayerReadyUpper {  get; set; }
     [Networked] bool secondPlayerReadyLower {  get; set; }
 
+    [Networked] bool upperCardsGrabbed { get; set; } = false;
+
     private bool turningOn;
     private void Start()
     {
@@ -53,6 +55,7 @@ public class PlayersCards : NetworkBehaviour
         {
             TurnOnCardsForSecondPlayerLower();
         }
+        UpperCardsGrabbed();
     }
 
     private void TurnOnCardsForSecondPlayerUpper()
@@ -72,7 +75,7 @@ public class PlayersCards : NetworkBehaviour
 
     private void IsYourCards()
     {
-        if (yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards() && AllCardsGrabbed() == false && FindObjectOfType<SnapCounter>().AreAllSnapPointsUnsnappped() == true)
+        if (yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards() && upperCardsGrabbed == false && FindObjectOfType<SnapCounter>().AreAllSnapPointsUnsnappped() == true)
         {
             if (!HasInputAuthority && !HasStateAuthority)
             {
@@ -88,7 +91,7 @@ public class PlayersCards : NetworkBehaviour
                 secondPlayerReadyUpper = false;
             }
         }
-        if (yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards() && AllCardsGrabbed() == true && FindObjectOfType<SnapCounter>().AreAllSnapPointsUnsnappped() == true)
+        if (yourCards && FindObjectOfType<NetworkedCardHandler>().HasDealtAllCards() && upperCardsGrabbed == true && FindObjectOfType<SnapCounter>().AreAllSnapPointsUnsnappped() == true)
         {
             if (!HasInputAuthority && !HasStateAuthority)
             {
@@ -155,17 +158,26 @@ public class PlayersCards : NetworkBehaviour
         turningOn = false;
     }
 
-    bool AllCardsGrabbed()
+    private void UpperCardsGrabbed()
     {
-        bool grabbedAll = true;
-        foreach (NetworkedDealCard card in cardHandlers)
+        RPC_RequestUpperCardsGrabbed();
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    private void RPC_RequestUpperCardsGrabbed()
+    {
+        if (HasStateAuthority)
         {
-            if (!card.IsGrabbed() && !card.IsDown())
+            bool grabbedAll = true;
+            foreach (NetworkedDealCard card in cardHandlers)
             {
-                grabbedAll = false;
+                if (!card.IsGrabbed() && !card.IsDown())
+                {
+                    grabbedAll = false;
+                }
             }
+            upperCardsGrabbed = grabbedAll;
         }
-        return grabbedAll;
     }
 
     int CardsOn()
@@ -200,7 +212,7 @@ public class PlayersCards : NetworkBehaviour
         bool grabbedAll = true;
         foreach (NetworkedDealCard card in cardHandlers)
         {
-            if (!card.IsGrabbed() && !card.IsThrown())
+            if (!card.IsGrabbed() || !card.IsThrown())
             {
                 grabbedAll = false;
             }

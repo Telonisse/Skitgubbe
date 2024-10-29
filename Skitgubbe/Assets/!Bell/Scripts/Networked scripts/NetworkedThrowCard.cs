@@ -22,7 +22,7 @@ public class NetworkedThrowCard : NetworkBehaviour
         {
             HandleCardLogic();
         }
-        if (pickUpCards)
+        if (pickUpCards && first == true)
         {
             HandleCardPickup();
         }
@@ -97,7 +97,7 @@ public class NetworkedThrowCard : NetworkBehaviour
     {
         foreach (var card in cards)
         {
-            card.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.1f, this.transform.position.z);
+            card.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.1f, this.transform.position.z + 0.1f);
             card.GetComponent<MeshRenderer>().enabled = true;
             card.GetComponent<Card>().ToggleObjectActiveState(true);
             card.GetComponent<Card>().SetIsThrown(false);
