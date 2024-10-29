@@ -30,12 +30,15 @@ public class NetworkedStart : NetworkBehaviour
                 // Move the first object to the first table position
                 GameObject firstObject = setActiveObjects[0];
                 firstObject.transform.position = firstTablePosition;
+                OVRManager ovrm = FindObjectOfType<OVRManager>();
+                Vector3 pos = ovrm.GetComponent<OVRCameraRig>().centerEyeAnchor.position;
+                pos.y = 0f; //firstObject.transform.position.y;
+                firstObject.transform.rotation = Quaternion.LookRotation(pos);
             }
-
-            foreach (var obj in setActiveObjects)
-            {
-                obj.SetActive(isActive);
-            }
+        }
+        foreach (var obj in setActiveObjects)
+        {
+            obj.SetActive(isActive);
         }
     }
 }

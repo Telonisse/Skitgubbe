@@ -42,9 +42,15 @@ public class Card : NetworkBehaviour
     }
     public void GrabCard()
     {
-        if (true)  // Only the server (authority) updates this
+        RPC_GrabCard();
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    private void RPC_GrabCard()
+    {
+        if (HasStateAuthority)
         {
-            isGrabbed = true;  // Set the networked grab state to true
+            isGrabbed = true;
             Debug.Log("Card grabbed.");
         }
     }
