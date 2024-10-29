@@ -39,6 +39,10 @@ public class NetworkedDealCard : NetworkBehaviour
             {
                 card = networkedCard.gameObject;
             }
+            else
+            {
+                Debug.Log("Card is null");
+            }
         }
     }
 

@@ -8,6 +8,7 @@ public class NetworkedThrowCard : NetworkBehaviour
 {
     [SerializeField] List<GameObject> cards;
     [SerializeField] GameObject killPile;
+    [SerializeField] AudioSource audioSource;
     [Networked] public bool first { get; set; } = false;
     [Networked] public bool pickUpCards { get; set; } = false;
 
@@ -30,11 +31,22 @@ public class NetworkedThrowCard : NetworkBehaviour
 
     public void PickUpCards()
     {
-        RPC_PickUpCards();
+        if (HasStateAuthority)
+        {
+            PickUpCards1();
+        }
+        else
+        {
+            RPC_PickUpCardsRequest();
+        }
     }
 
-    [Rpc(RpcSources.All, RpcTargets.All)]
-    private void RPC_PickUpCards()
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    private void RPC_PickUpCardsRequest()
+    {
+        PickUpCards1();
+    }
+    private void PickUpCards1()
     {
         if (pickUpCards)
         {
@@ -82,6 +94,10 @@ public class NetworkedThrowCard : NetworkBehaviour
                         other.GetComponent<Card>().ToggleObjectActiveState(false);
                         other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                         other.transform.position = this.transform.position;
+                    }
+                    else
+                    {
+                        audioSource.Play();
                     }
                 }
             }

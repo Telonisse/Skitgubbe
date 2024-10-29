@@ -55,6 +55,7 @@ public class PlayersCards : NetworkBehaviour
         {
             TurnOnCardsForSecondPlayerLower();
         }
+        Debug.Log("Upper cards grabbed " + upperCardsGrabbed);
         UpperCardsGrabbed();
     }
 
@@ -137,7 +138,7 @@ public class PlayersCards : NetworkBehaviour
             if (!card.IsDown())
             {
                 Debug.Log("Upper cards turned on");
-                card.TurnOnCards();
+                //card.TurnOnCards();
             }
             yield return new WaitForSeconds(1);
         }
@@ -151,7 +152,7 @@ public class PlayersCards : NetworkBehaviour
             if (card.IsDown())
             {
                 Debug.Log("Lower cards turned on");
-                card.TurnOnCards();
+                //card.TurnOnCards();
             }
             yield return new WaitForSeconds(1);
         }
